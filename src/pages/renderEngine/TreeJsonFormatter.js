@@ -94,18 +94,15 @@ export default class TreeJsonFormatter extends lng.Component {
                     } else {
                         switch(name) {
                             case "texture":
-                                if (element.texture) {
-                                    obj[name] = this._getSubObject(element.texture, config[name]);
-                                }
-                                break;
                             case "text":
-                                if (element.text) {
-                                    obj[name] = this._getSubObject(element.text, config[name]);
-                                }
-                                break;
                             case "shader":
-                                if (element.shader) {
-                                    obj[name] = this._getSubObject(element.shader, config[name]);
+                            case "flex":
+                            case "flexItem":
+                                const value = element[name];
+                                if (lng.Utils.isObject(value)) {
+                                    obj[name] = this._getSubObject(element[name], config[name]);
+                                } else {
+                                    obj[name] = value;
                                 }
                                 break;
                             case "color":
@@ -193,10 +190,13 @@ export default class TreeJsonFormatter extends lng.Component {
 
         const obj = {};
         propertyNames.forEach(name => {
-            if (name === "type") {
-                obj[name] = new JsonFormatter.ClearType(config["type"]);
-            } else {
-                obj[name] = object[name];
+            const include = this._shouldIncludeProperty(object, name, config[name]);
+            if (include) {
+                if (name === "type") {
+                    obj[name] = new JsonFormatter.ClearType(config["type"]);
+                } else {
+                    obj[name] = object[name];
+                }
             }
         });
 

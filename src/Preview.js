@@ -16,6 +16,10 @@ export default class Preview extends lng.Component {
         });
     }
 
+    clear() {
+        this.tag("Contents").children = [];
+    }
+
     startLivePreview(classType) {
         this._classType = classType;
         this._setState("Reloading");
@@ -35,7 +39,7 @@ export default class Preview extends lng.Component {
                     }
                     this._timeout = setTimeout(() => {
                         this._reloadingTimeout();
-                    }, 400);
+                    }, 1000);
                 }
                 $exit() {
                     this.tag("Loading").setSmooth("alpha", 0);

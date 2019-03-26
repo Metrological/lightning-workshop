@@ -21,7 +21,7 @@ export default class PositioningProps extends Page {
     }
 
     get title() {
-        return "Positioning"
+        return "Positioning Properties"
     }
 
     _active() {

@@ -84,7 +84,7 @@ class Example extends RenderTreeExample {
                     {p: 'w', v: {0:200, 0.5: 600, 1: 200}, rv: 0}
                 ]
             }),
-            this._main.animation({duration: 2, repeat: -1, stopDuration: 1,
+            this._main.animation({duration: 2, repeat: -1, delay: 0.5, stopDuration: 1,
                 actions: [
                     {p: 'h', v: {0:200, 0.5: 400, 1: 200}, rv: 0}
                 ]
@@ -214,9 +214,53 @@ class Example extends RenderTreeExample {
             },
             {
                 f: () => {
-                    this._main.texture.src = "./static/img/LilLightningFlying.png";
+                    this._main.patch({
+                        TopBorder: {
+                            rect: true,
+                            h: 10,
+                            w: w=>w,
+                            x: 0,
+                            y: 0
+                        },
+                        BottomBorder: {
+                            rect: true,
+                            h: 10,
+                            w: w=>w,
+                            x: 0,
+                            y: h=>h-10
+                        },
+                        LeftBorder: {
+                            rect: true,
+                            w: 10,
+                            h: h=>h,
+                            x: 0,
+                            y: 0
+                        },
+                        RightBorder: {
+                            rect: true,
+                            w: 10,
+                            h: h=>h,
+                            y: 0,
+                            x: w=>w-10
+                        }
+
+                    });
                 },
-                h: ["Main.texture"]
+                h: ["TopBorder","BottomBorder","LeftBorder","RightBorder"],
+                c: {
+                    Main: {
+                        TopBorder: {rect: true, w:"w=>w",h:true},
+                        RightBorder: {rect: true, w:true,h:"h=>h",x:"w=>w-10"},
+                        BottomBorder: {rect: true, w:"w=>w",h:true,y:"h=>h-10"},
+                        LeftBorder: {rect: true, w:true,h:"h=>h"},
+                    }
+                }
+            },
+            {
+                f: () => {
+                    this._main.w = 300;
+                    this._main.h = 300;
+                }
             }
         ];
     }

@@ -12,7 +12,7 @@ export default class DemoApps extends Page {
     }
 
     get title() {
-        return "Demo apps";
+        return "Hall of Fame";
     }
 
     _setIndex(i) {
@@ -21,9 +21,9 @@ export default class DemoApps extends Page {
 
     _construct() {
         this._apps = [
-            {identifier: "com.metrological.app.ARD", title: "ARD"},
+           {identifier: "com.metrological.app.ARD", title: "ARD"},
             {identifier: "com.metrological.app.VEVO", title: "VEVO"},
-            // {identifier: "com.metrological.app.Vimeo", title: "Vimeo"}
+            {identifier: "com.metrological.app.Vimeo", title: "Vimeo"}
         ];
     }
 

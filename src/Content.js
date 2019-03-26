@@ -11,6 +11,7 @@ import RenderingProps from "./pages/renderEngine/RenderingProps.js";
 import Transforms from "./pages/renderEngine/Transforms.js";
 import Rendering from "./pages/renderEngine/Rendering.js";
 import Textures from "./pages/renderEngine/Textures.js";
+import Flexbox from "./pages/renderEngine/Flexbox.js";
 
 export default class Content extends lng.Component {
 
@@ -50,7 +51,6 @@ export default class Content extends lng.Component {
     _setup() {
         this.tag("Pages").children = [
             {type: FrontPage},
-            {type: DemoApps},
             {type: Introduction},
             {type: GettingStarted},
             {type: Positioning},
@@ -60,7 +60,9 @@ export default class Content extends lng.Component {
             {type: Rendering},
             {type: RenderingProps},
             {type: Textures},
+            {type: Flexbox},
             {type: RenderEngine},
+            {type: DemoApps},
         ];
         this._index = -1;
 

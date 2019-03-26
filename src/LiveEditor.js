@@ -23,7 +23,8 @@ export default class LiveEditor extends lng.Component {
         this._editorDiv.style.position = 'absolute';
         this._editorDiv.style.left = '0px';
         this._editorDiv.style.top = '0px';
-        this._editorDiv.style.fontSize = '24px';
+        this._editorDiv.style.fontSize = '22px';
+        this._editorDiv.style.lineHeight = '20px';
         this._editorDiv.style.zIndex = '70000';
         this._editorDiv.style.borderRight = '2px solid black';
         this._editorDiv.style.transition = 'width 0.2s';
@@ -43,6 +44,8 @@ export default class LiveEditor extends lng.Component {
 
     set session(options) {
         this._editor.session.$undoManager.$redoStack = options.data.actions;
+        this._editor.setValue("");
+        this.tag("Preview").clear();
         this._options = options;
         this._setState("Editor");
     }
@@ -66,10 +69,12 @@ export default class LiveEditor extends lng.Component {
 
         const isApp = (this._options.isApp === true);
         try {
-            let creator = "return "+ this._editor.getValue();
+            let creator = "const appClass = " + this._editor.getValue();
             creator = creator.replace("lng.Application", "lng.Component");
             creator = creator.replace("constructor", "_dummy_constructor");
             creator = creator.replace("super(options);", "");
+
+            creator += "\nreturn appClass;";
             const f = new Function(creator);
             AppClass = f();
         } catch (e) {
@@ -151,9 +156,9 @@ export default class LiveEditor extends lng.Component {
     // _handleKey(event) {
     //     if (event.keyCode === 81 && event.altKey) {
     //         this.fire('_handleSwitchFocus');
-    //     } else if (event.keyCode === 190 && event.altKey) {
+    //     } else if (event.keyCode === 39 && event.altKey) {
     //         this.fire('_nextStep');
-    //     } else if (event.keyCode === 188 && event.altKey) {
+    //     } else if (event.keyCode === 37 && event.altKey) {
     //         this.fire('_prevStep');
     //     } else if (event.keyCode === 87 && event.altKey) {
     //         this.fire('_reload');

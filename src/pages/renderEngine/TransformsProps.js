@@ -21,7 +21,7 @@ export default class TransformsProps extends Page {
     }
 
     get title() {
-        return "Positioning"
+        return "Transform Properties"
     }
 
     _active() {
