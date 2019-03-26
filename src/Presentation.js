@@ -16,15 +16,15 @@ export default class Presentation extends lng.Application {
         this._setState("Content");
     }
 
-    _startLiveEditor(data) {
-        this.tag("LiveEditor").session = data;
+    _startLiveEditor(options) {
+        this.tag("LiveEditor").session = options;
         this._setState("LiveEditor");
     }
 
     _changedState() {
         this.patch({
             Content: {smooth: {alpha: this._inState("Content") ? 1 : 0}},
-            LiveEditor: {smooth: {alpha: this._inState("LiveEditor") ? 1 : 0}}
+            LiveEditor: {smooth: {alpha: this._inState("LiveEditor") ? 1 : 0}, shown: this._inState("LiveEditor")}
         })
     }
 
@@ -38,8 +38,8 @@ export default class Presentation extends lng.Application {
                 _getFocused() {
                     return this.tag("Content");
                 }
-                _liveEdit({data}) {
-                    this._startLiveEditor(data);
+                _liveEdit(options) {
+                    this._startLiveEditor(options);
                 }
             },
             class LiveEditor extends this {
@@ -48,6 +48,10 @@ export default class Presentation extends lng.Application {
                 }
                 _handleUp() {
                     this._setState("Content");
+                }
+                _handleDown() {
+                    this._setState("Content");
+                    this.tag("Content")._handleRight();
                 }
             },
             class App extends this {

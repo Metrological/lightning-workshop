@@ -35,7 +35,7 @@ export default class Preview extends lng.Component {
                     }
                     this._timeout = setTimeout(() => {
                         this._reloadingTimeout();
-                    }, 1000);
+                    }, 400);
                 }
                 $exit() {
                     this.tag("Loading").setSmooth("alpha", 0);

@@ -5,18 +5,45 @@
     <script src="./node_modules/wpe-lightning/dist/lightning-web.js"></script>
     <!--<script src="./node_modules/wpe-lightning/devtools/lightning-inspect.js"></script>-->
     <script src="./lib/ace-src/ace.js" type="text/javascript" charset="utf-8"></script>
+    <style>
+        body {
+            background: black;
+        }
+        canvas, iframe, #editor {
+            margin: 50px;
+        }
+    </style>
 </head>
 <body>
 
-    <div id="output" tabindex="0" style="position: absolute; left: 0; top: 0;">
+    <div id="output" style="position: absolute; left: 0; top: 0;">
     <script type="module">
         import Presentation from "./src/Presentation.js";
 
         const options = {stage: {w: 1920, h: 1080, clearColor: 0xFF000000, useImageWorker: false}, debug: true};
+        options.keys = {
+            38: "Up",
+            40: "Down",
+            37: "Left",
+            39: "Right",
+            13: "Enter",
+            9: "Back",
+            27: "Exit",
+            36: "Exit",
+            166: "Back"
+        }
         const app = new Presentation(options);
 
         const output = document.getElementById('output');
         output.appendChild(app.getCanvas());
+
+        // Block browser back key.
+        window.addEventListener('keydown', (e) => {
+            if (e.keyCode === 166) {
+                e.preventDefault();
+                return false;
+            }
+        });
     </script>
 </body>
 </html>

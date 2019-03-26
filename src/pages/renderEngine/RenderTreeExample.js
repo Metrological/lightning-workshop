@@ -1,6 +1,6 @@
 import TreeJsonFormatter from "./TreeJsonFormatter.js";
 
-export default class RenderTree extends lng.Component {
+export default class RenderTreeExample extends lng.Component {
 
     static _template() {
         return {
@@ -98,10 +98,12 @@ export default class RenderTree extends lng.Component {
     _startAction() {
         const current = this._currentAction;
 
+        current.f();
+
         this._code.config = this._gatherActionConfig();
         this._code.highlights = current.h || [];
 
-        current.f();
+        this._code.update();
     }
 
     _gatherActionConfig() {

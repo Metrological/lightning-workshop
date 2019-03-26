@@ -13,7 +13,7 @@ export default class Rendering extends Page {
     }
 
     get title() {
-        return "Rendering";
+        return "Rendering properties";
     }
 
     _getFocused() {

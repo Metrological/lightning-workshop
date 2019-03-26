@@ -89,76 +89,85 @@ export default class TreeJsonFormatter extends lng.Component {
             } else {
                 const include = this._shouldIncludeProperty(element, name, config[name]);
                 if (include) {
-                    switch(name) {
-                        case "texture":
-                            if (element.texture) {
-                                obj[name] = this._getSubObject(element.texture, config[name]);
-                            }
-                            break;
-                        case "shader":
-                            if (element.shader) {
-                                obj[name] = this._getSubObject(element.shader, config[name]);
-                            }
-                            break;
-                        case "color":
-                            const ul = element.colorUl;
-                            const ur = element.colorUr;
-                            const bl = element.colorBl;
-                            const br = element.colorBr;
-                            const verticalMatch = (ul === ur && bl === br);
-                            const horizontalMatch = (ul === bl && ur === br);
-                            if (horizontalMatch) {
-                                if (verticalMatch) {
-                                    obj.color = ul;
-                                } else {
-                                    obj.colorLeft = ul;
-                                    obj.colorRight = br;
+                    if (lng.Utils.isString(config[name])) {
+                        obj[name] = new JsonFormatter.ClearType(config[name]);
+                    } else {
+                        switch(name) {
+                            case "texture":
+                                if (element.texture) {
+                                    obj[name] = this._getSubObject(element.texture, config[name]);
                                 }
-                            } else {
-                                if (verticalMatch) {
-                                    obj.colorTop = ul;
-                                    obj.colorBottom = bl;
-                                } else {
-                                    obj.colorUl = ul;
-                                    obj.colorUr = ur;
-                                    obj.colorBl = bl;
-                                    obj.colorBr = br;
+                                break;
+                            case "text":
+                                if (element.text) {
+                                    obj[name] = this._getSubObject(element.text, config[name]);
                                 }
-                            }
-                            break;
-                        case "mount":
-                            const mountX = element.mountX;
-                            const mountY = element.mountY;
-                            if (mountX === mountY) {
+                                break;
+                            case "shader":
+                                if (element.shader) {
+                                    obj[name] = this._getSubObject(element.shader, config[name]);
+                                }
+                                break;
+                            case "color":
+                                const ul = element.colorUl;
+                                const ur = element.colorUr;
+                                const bl = element.colorBl;
+                                const br = element.colorBr;
+                                const verticalMatch = (ul === ur && bl === br);
+                                const horizontalMatch = (ul === bl && ur === br);
+                                if (horizontalMatch) {
+                                    if (verticalMatch) {
+                                        obj.color = ul;
+                                    } else {
+                                        obj.colorLeft = ul;
+                                        obj.colorRight = br;
+                                    }
+                                } else {
+                                    if (verticalMatch) {
+                                        obj.colorTop = ul;
+                                        obj.colorBottom = bl;
+                                    } else {
+                                        obj.colorUl = ul;
+                                        obj.colorUr = ur;
+                                        obj.colorBl = bl;
+                                        obj.colorBr = br;
+                                    }
+                                }
+                                break;
+                            case "mount":
+                                const mountX = element.mountX;
+                                const mountY = element.mountY;
+                                if (mountX === mountY) {
+                                    obj[name] = element[name];
+                                } else {
+                                    obj.mountX = element.mountX;
+                                    obj.mountY = element.mountY;
+                                }
+                                break;
+                            case "pivot":
+                                const pivotX = element.pivotX;
+                                const pivotY = element.pivotY;
+                                if (pivotX === pivotY) {
+                                    obj[name] = element[name];
+                                } else {
+                                    obj.pivotX = element.pivotX;
+                                    obj.pivotY = element.pivotY;
+                                }
+                                break;
+                            case "scale":
+                                const scaleX = element.scaleX;
+                                const scaleY = element.scaleY;
+                                if (scaleX === scaleY) {
+                                    obj[name] = element[name];
+                                } else {
+                                    obj.scaleX = element.scaleX;
+                                    obj.scaleY = element.scaleY;
+                                }
+                                break;
+                            default:
                                 obj[name] = element[name];
-                            } else {
-                                obj.mountX = element.mountX;
-                                obj.mountY = element.mountY;
-                            }
-                            break;
-                        case "pivot":
-                            const pivotX = element.pivotX;
-                            const pivotY = element.pivotY;
-                            if (pivotX === pivotY) {
-                                obj[name] = element[name];
-                            } else {
-                                obj.pivotX = element.pivotX;
-                                obj.pivotY = element.pivotY;
-                            }
-                            break;
-                        case "scale":
-                            const scaleX = element.scaleX;
-                            const scaleY = element.scaleY;
-                            if (scaleX === scaleY) {
-                                obj[name] = element[name];
-                            } else {
-                                obj.scaleX = element.scaleX;
-                                obj.scaleY = element.scaleY;
-                            }
-                            break;
-                        default:
-                            obj[name] = element[name];
-                            break;
+                                break;
+                        }
                     }
                 }
             }
@@ -315,7 +324,7 @@ class JsonFormatter {
             stringValue = `"${value}"`;
             color = 0xFFAAAAFF;
         } else if (lng.Utils.isNumber(value)) {
-            if (name.indexOf("color") !== -1) {
+            if (name.toLowerCase().indexOf("color") !== -1) {
                 stringValue = "0x" + value.toString(16);
                 color = (0x00FFFFFF & value) + 0xFF000000;
             } else {
@@ -329,6 +338,8 @@ class JsonFormatter {
         } else if (lng.Utils.isBoolean(value)) {
             stringValue = "" + value;
             color = 0xFFFF00AA;
+        } else if (value === null) {
+            stringValue = "null";
         } else {
             throw new Error("Unknown formatted type");
         }

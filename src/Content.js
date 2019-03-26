@@ -1,11 +1,16 @@
 import FrontPage from "./pages/front/FrontPage.js";
 import RenderEngine from "./pages/renderEngine/RenderEngine.js";
 import Introduction from "./pages/Introduction.js";
+import GettingStarted from "./pages/GettingStarted.js";
 import DemoApps from "./pages/DemoApps.js";
 
 import Positioning from "./pages/renderEngine/Positioning.js";
+import PositioningProps from "./pages/renderEngine/PositioningProps.js";
+import TransformsProps from "./pages/renderEngine/TransformsProps.js";
+import RenderingProps from "./pages/renderEngine/RenderingProps.js";
 import Transforms from "./pages/renderEngine/Transforms.js";
 import Rendering from "./pages/renderEngine/Rendering.js";
+import Textures from "./pages/renderEngine/Textures.js";
 
 export default class Content extends lng.Component {
 
@@ -47,9 +52,14 @@ export default class Content extends lng.Component {
             {type: FrontPage},
             {type: DemoApps},
             {type: Introduction},
+            {type: GettingStarted},
             {type: Positioning},
+            {type: PositioningProps},
             {type: Transforms},
+            {type: TransformsProps},
             {type: Rendering},
+            {type: RenderingProps},
+            {type: Textures},
             {type: RenderEngine},
         ];
         this._index = -1;

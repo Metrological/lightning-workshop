@@ -13,7 +13,8 @@ function startApp() {
         178: "Stop",
         250: "PlayPause",
         191: "Search", // Use "/" for keyboard
-        409: "Search"
+        409: "Search",
+        166: "Back"
     };
 
     const memoryPressure = parseInt(ux.Ui.getOption('memoryPressure')) || 16e6;
@@ -53,6 +54,15 @@ function startApp() {
     document.body.appendChild(canvas);
 
     window.app = bootstrap;
+
+    // Block browser back key.
+    window.addEventListener('keydown', (e) => {
+        if (e.keyCode === 166) {
+            e.preventDefault();
+            return false;
+        }
+    });
+
 }
 
 function isSupportingES6() {

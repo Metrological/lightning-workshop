@@ -12,7 +12,7 @@ export default class AppIframe extends lng.Component {
         this._appIframe.style.border = '0';
 
         this._listener = (event) => {
-            if (event.keyCode === 27) {
+            if (event.keyCode === 27 || event.keyCode === 36) {
                 this.signal('close');
             }
         };

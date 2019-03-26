@@ -36,7 +36,9 @@ function startApp() {
             227: "Rewind", // Vodafone
             228: "Forward", // Vodafone
             191: "Search", // Use "/" for keyboard
-            409: "Search"
+            409: "Search",
+            36: "Exit",
+            166: "Back"
         };
 
         const searchParams = new URL(document.location.href).searchParams;
@@ -86,6 +88,14 @@ function startApp() {
         document.body.appendChild(canvas);
 
         window.app = bootstrap;
+
+        // Block browser back key.
+        window.addEventListener('keydown', (e) => {
+            if (e.keyCode === 166) {
+                e.preventDefault();
+                return false;
+            }
+        });
     });
 }
 

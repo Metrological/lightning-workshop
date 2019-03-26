@@ -21,12 +21,13 @@ export default class LiveEditor extends lng.Component {
         this._editorDiv.style.width = '960px';
         this._editorDiv.style.height = '1080px';
         this._editorDiv.style.position = 'absolute';
-        this._editorDiv.style.left = '0';
-        this._editorDiv.style.top = '0';
+        this._editorDiv.style.left = '0px';
+        this._editorDiv.style.top = '0px';
         this._editorDiv.style.fontSize = '24px';
         this._editorDiv.style.zIndex = '70000';
         this._editorDiv.style.borderRight = '2px solid black';
         this._editorDiv.style.transition = 'width 0.2s';
+        this._editorDiv.style.transition = 'opacity 0.2s';
         document.body.appendChild(this._editorDiv);
 
         this._editor = ace.edit("editor");
@@ -40,8 +41,9 @@ export default class LiveEditor extends lng.Component {
         this._editorDiv.style.display = 'none';
     }
 
-    set session(data) {
-        this._editor.session.$undoManager.$redoStack = data.actions;
+    set session(options) {
+        this._editor.session.$undoManager.$redoStack = options.data.actions;
+        this._options = options;
         this._setState("Editor");
     }
 
@@ -55,21 +57,25 @@ export default class LiveEditor extends lng.Component {
 
     _setDivider(divider) {
         const dividerPosition = divider * 0.01 * 1920;
-        this._editorDiv.style.width = dividerPosition + 'px';
+        this._editorDiv.style.width = (dividerPosition) + 'px';
         this.tag("PreviewWrapper").setSmooth('x', dividerPosition);
     }
 
     _reload() {
         let AppClass;
 
+        const isApp = (this._options.isApp === true);
         try {
             let creator = "return "+ this._editor.getValue();
             creator = creator.replace("lng.Application", "lng.Component");
+            creator = creator.replace("constructor", "_dummy_constructor");
+            creator = creator.replace("super(options);", "");
             const f = new Function(creator);
             AppClass = f();
         } catch (e) {
+            console.error(e);
         }
-        this.tag("Preview").startLivePreview(AppClass);
+        this.tag("Preview").startLivePreview(AppClass, isApp);
     }
 
     _exportUndoStack() {
@@ -80,6 +86,10 @@ export default class LiveEditor extends lng.Component {
 
     _getUndoManager() {
         return this._editor.session.$undoManager;
+    }
+
+    set shown(v) {
+        this._editorDiv.style.opacity = v ? '1' : '0';
     }
 
     static _states() {
@@ -138,30 +148,30 @@ export default class LiveEditor extends lng.Component {
         ]
     }
 
-    _handleKey(event) {
-        if (event.keyCode === 81 && event.altKey) {
-            this.fire('_handleSwitchFocus');
-        } else if (event.keyCode === 190 && event.altKey) {
-            this.fire('_nextStep');
-        } else if (event.keyCode === 188 && event.altKey) {
-            this.fire('_prevStep');
-        } else if (event.keyCode === 87 && event.altKey) {
-            this.fire('_reload');
-        }
-        return false;
-    }
-
     // _handleKey(event) {
-    //     if (event.keyCode === 36) {
+    //     if (event.keyCode === 81 && event.altKey) {
     //         this.fire('_handleSwitchFocus');
-    //     } else if (event.keyCode === 73) {
+    //     } else if (event.keyCode === 190 && event.altKey) {
     //         this.fire('_nextStep');
-    //     } else if (event.keyCode === 187) {
+    //     } else if (event.keyCode === 188 && event.altKey) {
     //         this.fire('_prevStep');
-    //     } else if (event.keyCode === 13) {
+    //     } else if (event.keyCode === 87 && event.altKey) {
     //         this.fire('_reload');
+    //     } else if (event.keyCode === 27 && event.altKey) {
+    //         this._exportUndoStack()
     //     }
     //     return false;
     // }
+
+    _handleKey(event) {
+        if (event.keyCode === 36) {
+            this.fire('_handleSwitchFocus');
+        } else if (event.keyCode === 187) {
+            this.fire('_nextStep');
+        } else if (event.keyCode === 189) {
+            this.fire('_prevStep');
+        }
+        return false;
+    }
 
 }
