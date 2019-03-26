@@ -1,0 +1,48 @@
+{
+  "section1": {
+    "faqs": {
+      "faq1": {
+        "headline": "Ich habe eine Frage zu Inhalten der ARD Mediathek",
+        "header": "WIE LANGE SIND BEITRÄGE VERFÜGBAR?",
+        "info": "Das ist unterschiedlich. Die Verfügbarkeit variiert zwischen einigen Tagen und mehreren Monaten. Sie ist durch redaktionelle und rechtliche Vorgaben geregelt. Der rechtliche Rahmen wurde am 1.Juni 2009 durch den 12. Rundfunkänderungsstaatsvertrag geändert. Danach dürfen nur noch zeit- und kulturhistorische Inhalte unbefristet angeboten werden. Die Verfügbarkeit aller anderen Inhalte muss zeitlich begrenzt werden. Die Verweildauern wurden im Verfahren \"Dreistufentest\" festgelegt. Mehr zu den Verweildauern finden Sie in den Telemedienkonzeptender gemeinschaftlichen Angebote der ARD. \n\nFragen oder Anmerkungen zu Beiträgen von Das Erste, den Landesrundfunkanstalten oder der Deutschen Welle werden von den zugehörigen Zuschauerredaktionen beantwortet."
+      },
+      "faq2": {
+        "header": "WARUM SIND NICHT ALLE SENDUNGEN VERFÜGBAR?",
+        "info": "Das hat häufig rechtliche Gründe. Manche Sendungen gibt's komplett, manche werden nur mit ausgewählten Einzelbeiträgen angeboten. \n\nFragen oder Anmerkungen zu Beiträgen von Das Erste, den Landesrundfunkanstalten oder der Deutschen Welle werden von den zugehörigen Zuschauerredaktionen beantwortet."
+      },
+      "faq3": {
+        "header": "WESHALB KANN ICH BESTIMMTE LIVESTREAMS UND VIDEOS NICHT AUS DEM AUSLAND ABRUFEN (GEOBLOCKING)?",
+        "info": "Aufgrund rechtlicher Bestimmungen dürfen manche Livestreams und On-Demand-Inhalte lediglich von Deutschland aus abgerufen werden. Zu diesem Zweck wird der Standort eines Nutzers über die IP-Adresse seines Computers ermittelt und die Auslieferung des Streamingsignals ggf. unterbunden. Diesen Vorgang nennt man Geoblocking.\n\nDas Verfahren findet besonders häufig bei Sport- und Kultur-Ereignissen Anwendung - zum Beispiel bei Fußball-Livestreams, Konzert-übertragungen oder bei Filmen und anderen fiktionalen Inhalten aus Lizenzeinkäufen. Ist ein Inhalt geogeblockt, ist er in der Regel mit dem Hinweis \"Aus rechtlichen Gründen ist dieser Film nur innerhalb von Deutschland abrufbar\" gekennzeichnet."
+      },
+      "faq4": {
+        "header": "WELCHE RECHTLICHEN HINWEISE GIBT ES ZUR NUTZUNG DER INHALTE?",
+        "info": "Die Audio- und Videoinhalte werden ausschließlich zur privaten, persönlichen Nutzung bereitgestellt. Eine Weiterverbreitung oder kommerzielle Nutzung ist nicht gestattet. Alle Rechte vorbehalten!"
+      },
+      "faq5": {
+        "header": "WELCHE VIDEOS HABEN UNTERTITEL UND WIE WERDEN SIE AKTIVIERT?",
+        "info": "Wenn ein Video Untertitel hat, erscheint im Steuerungsbereich des Players links eine Schaltfläche mit der Aufschrift \"UT\". Ein Klick auf diese aktiviert die Untertitelfunktion, die entsprechenden Texte werden im Playerfenster angezeigt."
+      }
+    }
+  },
+  "section2": {
+    "faqs": {
+      "faq1": {
+        "headline": "Ich habe Probleme beim Abspielen von Videos",
+        "header": "WAS KANN ICH BEI ABSPIELPROBLEMEN TUN?",
+        "info": "Versuchen Sie, ob das Abspielen der Beiträge in einem anderen Browser (Microsoft Edge, Firefox, Chrome, Safari) oder Gerät besser funktioniert. \nGelingt das Abspielen, wenn Sie das Playerformat und/oder die Qualität wechseln? Diese Einstellung können Sie vornehmen, indem Sie mit dem Cursor über das Playerfenster fahren und auf das Rädchen klicken.\nüberprüfen Sie welche Bandbreite real vorliegt. Für die ARD Mediathek sollten mind. 254 kByte/s vorliegen (DSL2000).\nLöschen Sie Ihren Cache sowie alle Cookies. Stellen Sie dabei sicher, dass die ARD Mediathek beim Löschen des Caches nicht geöffnet ist."
+      },
+      "faq2": {
+        "header": "WAS KANN ICH BEI BILD- ODER TONPROBLEMEN TUN?",
+        "info": "Überprüfen Sie bitte, ob Sie eventuell benötigte Software-Erweiterungen zum Abspielen von Audios und Videos für Ihren Browser installiert haben. Falls das Video abgespielt wird, Sie aber keinen Ton hören, überprüfen Sie bitte die Audioeinstellungen innerhalb des Playerfensters und die Ihres Computers."
+      },
+      "faq3": {
+        "header": "WARUM DAUERT ES MANCHMAL MEHRERE SEKUNDEN BIS DER BEITRAG STARTET?",
+        "info": "Grundsätzlich kommt es bei jedem Abruf eines Beitrages zu einer Wiedergabeverzögerung, der sogenannten Time To Play. Dies hängt unter anderem damit zusammen, dass vor dem Start Teile des Videos in den Zwischenspeicher Ihres Systems geladen werden müssen. Diese Faktoren können bei Nutzern mit langsamer Internetverbindung eine Verzögerung von 30 Sekunden und mehr bewirken.\n\nVerzögerungen bei adaptivem Streaming:\n\nAdaptives Streaming wird derzeit hauptsächlich für mobile Endgeräte mit iOS und PCs beim Dynamic Streaming (HDS) genutzt. Bei adaptivem Streaming bestimmt der Player automatisch die bestmögliche Wiedergabequalität. Dies kann zu zusätzlichen Verzögerungen führen."
+      },
+      "faq4": {
+        "header": "WAS BEDEUTET DIE MELDUNG \"DIESES VIDEO KANN LEIDER NICHT ABGESPIELT WERDEN\"?",
+        "info": "Falls Sie unser Angebot von Deutschland aus nutzen, könnte bereits ein erneutes Laden der Seite das Problem beheben. Anderenfalls überprüfen Sie bitte die Sicherheitseinstellungen Ihres Browsers sowie Ihrer Firewall und richten Sie gegebenenfalls entsprechende Ausnahmen für die URL https://www.ardmediathek.de ein.\n\nAufgrund rechtlicher Bestimmungen dürfen manche Livestreams und On-Demand-Inhalte lediglich von Deutschland aus abgerufen werden. Zu diesem Zweck wird der Standort eines Nutzers über die IP-Adresse seines Computers ermittelt und die Auslieferung des Streamingsignals ggf. unterbunden."
+      }
+    }
+  }
+}

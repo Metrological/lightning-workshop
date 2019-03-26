@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <script src="./node_modules/wpe-lightning/dist/lightning-web.js"></script>
+    <!--<script src="./node_modules/wpe-lightning/devtools/lightning-inspect.js"></script>-->
+    <script src="./lib/ace-src/ace.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+
+    <div id="output" tabindex="0" style="position: absolute; left: 0; top: 0;">
+    <script type="module">
+        import Presentation from "./src/Presentation.js";
+
+        const options = {stage: {w: 1920, h: 1080, clearColor: 0xFF000000, useImageWorker: false}, debug: true};
+        const app = new Presentation(options);
+
+        const output = document.getElementById('output');
+        output.appendChild(app.getCanvas());
+    </script>
+</body>
+</html>

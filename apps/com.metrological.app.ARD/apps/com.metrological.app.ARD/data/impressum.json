@@ -1,0 +1,20 @@
+{
+  "Page": "Impressum der ARD Mediathek",
+  "Description": "Information nach § 55 Rundfunkstaatsvertrag (RStV) sowie § 5 Telemediengesetz (TMG):\nDie ARD Mediathek ist ein Gemeinschaftsangebot der Arbeitsgemeinschaft der öffentlich-rechtlichen Rundfunkanstalten der Bundesrepublik Deutschland (ARD). Diensteanbieter im Sinne des § 5 Absatz 1 TMG und damit inhaltlich verantwortlich ist die im jeweiligen Online-Inhalt genannte, den Inhalt einbringende Anstalt.",
+  "Description2": "Die Federführung für die ARD Mediathek obliegt dem SWR.",
+  "MainAddress": "Verantwortlich im Sinne von § 55 RStV:",
+  "MainAddressInfo": "ARD OnlineBenjamin Fischer\nARD Online\nSüdwestrundfunk (SWR)\n\nAm Fort Gonsenheim 139 \n55122 Mainz",
+  "ExtraHeader": "Die in der ARD zusammengeschlossenen Rundfunkanstalten sind:",
+  "Addresses": {
+    "Bayerischer Rundfunk": "Anstalt des öffentlichen Rechts\nRundfunkplatz 1\n80335 München\nGesetzlicher Vertreter: Ulrich Wilhelm\nTelefon: 089 5900-01\nE-Mail: info@br-online.de\nUmsatzsteueridentifikationsnummer DE129523494",
+    "Hessischer Rundfunk": "Anstalt des öffentlichen Rechts\nBertramstraße 8\n60320 Frankfurt\nGesetzlicher Vertreter: Manfred Krupp\nTelefon: 069 155-1\nE-Mail: hzs@hr-online.de\nUmsatzsteueridentifikationsnummer DE114110440",
+    "Mitteldeutscher Rundfunk": "Anstalt des öffentlichen Rechts\nKantstr. 71 - 73\n04275 Leipzig\nGesetzliche Vertreterin: Prof. Dr. Karola Wille (Intendantin)\nTelefon: 0341 3000\nE-Mail: publikumsservice@mdr.de\nUmsatzsteueridentifikationsnummer DE141510836",
+    "Norddeutscher Rundfunk": "Anstalt des öffentlichen Rechts\nRothenbaumchaussee 132 - 134\n20149 Hamburg\nGesetzlicher Vertreter: Lutz Marmor\nTelefon: 040 4156-0\nE-Mail: info@ndr.de\nUmsatzsteueridentifikationsnummer DE118509776",
+    "Radio Bremen": "Anstalt des öffentlichen Rechts\nDiepenau 10\n28195 Bremen\nGesetzlicher Vertreter: Jan Metzger\nTelefon: 0421 246-0\nE-Mail: online@radiobremen.de\nUmsatzsteueridentifikationsnummer DE114397654",
+    "Rundfunk Berlin-Brandenburg": "Anstalt des öffentlichen Rechts\nMasurenallee 8 - 14\n14057 Berlin\nGesetzliche Vertreterin: Patricia Schlesinger\nTelefon: 030 97993-0\nE-Mail: service-redaktion@rbb-online.de\nUmsatzsteueridentifikationsnummer DE 228847705",
+    "Saarländischer Rundfunk": "Anstalt des öffentlichen Rechts\nFunkhaus Halberg\n66100 Saarbrücken\nGesetzlicher Vertreter: Thomas Kleist\nTelefon: 0681 602-0\nE-Mail: info@sr-online.de\nUmsatzsteueridentifikationsnummer DE138117038",
+    "Südwestrundfunk": "Anstalt des öffentlichen Rechts\nNeckarstraße 230\n70190 Stuttgart\nGesetzlicher Vertreter: Peter Boudgoust\nTelefon: 0711 929-0\nE-Mail: info@swr.de\nUmsatzsteueridentifikationsnummer DE81248116",
+    "Westdeutscher Rundfunk": "Anstalt des öffentlichen Rechts\nAppellhofplatz 1\n50667 Köln\nGesetzlicher Vertreter: Tom Buhrow\nTelefon: 0221 220-0\nE-Mail: fernsehen-online@wdr.de\nUmsatzsteueridentifikationsnummer DE122790169",
+    "Deutsche Welle": "Anstalt des öffentlichen Rechts\nKurt-Schumacher-Str. 3\n53113 Bonn\nGesetzlicher Vertreter: Peter Limbourg\nTelefon: 0228 429-0\nE-Mail: info@dw-world.de\nUmsatzsteueridentifikationsnummer DE123052407"
+  }
+}

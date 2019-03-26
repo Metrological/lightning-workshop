@@ -1,0 +1,9 @@
+{
+  "author": "Metrological, Bas van Meurs <b.van.meurs@metrological.com>",
+  "name": "lightning-presentation",
+  "version": "1.0.0",
+  "license": "apache",
+  "dependencies": {
+    "wpe-lightning": "file:../wpe-lightning"
+  }
+}
