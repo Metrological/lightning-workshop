@@ -12,7 +12,7 @@ export default class DemoApps extends Page {
     }
 
     get title() {
-        return "Hall of Fame";
+        return "App presentations";
     }
 
     _setIndex(i) {

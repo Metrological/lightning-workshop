@@ -15,6 +15,7 @@ import Rendering from "./pages/renderEngine/Rendering.js";
 import Textures from "./pages/renderEngine/Textures.js";
 import Flexbox from "./pages/renderEngine/Flexbox.js";
 import Planning from "./pages/Planning.js";
+import WBSO from "./pages/WBSO.js";
 
 export default class Content extends lng.Component {
 
@@ -69,6 +70,7 @@ export default class Content extends lng.Component {
             {type: DemoApps},
             {type: SDK},
             {type: CreateApp},
+            {type: WBSO},
         ];
         this._index = -1;
 
