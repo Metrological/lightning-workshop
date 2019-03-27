@@ -14,12 +14,10 @@ export default class RenderEngine extends Page {
                         {type: BulletPoint, content: {text: {text: "Tree structure of Elements", fontSize: 48}}},
                         {type: BulletPoint, content: {text: {text: "JSON syntax", fontSize: 48}}},
                         {type: BulletPoint, content: {text: {text: "Render loop", fontSize: 48}}},
+                        {x: 50, type: BulletPoint, content: {text: {text: "Update layout", fontSize: 48}}},
                         {x: 50, type: BulletPoint, content: {text: {text: "Calculate render coordinates", fontSize: 48}}},
                         {x: 50, type: BulletPoint, content: {text: {text: "Upload new visible textures", fontSize: 48}}},
-                        {x: 50, type: BulletPoint, content: {text: {text: "Fill coordinate buffers", fontSize: 48}}},
-                        {x: 50, type: BulletPoint, content: {text: {text: "Issue WebGL commands", fontSize: 48}}},
-                        {type: BulletPoint, content: {text: {text: "Texture manager / GC", fontSize: 48}}},
-                        {type: BulletPoint, content: {text: {text: "Smart optimizations", fontSize: 48}}}
+                        {x: 50, type: BulletPoint, content: {text: {text: "Issue WebGL commands", fontSize: 48}}}
                     ]
                 }
             }

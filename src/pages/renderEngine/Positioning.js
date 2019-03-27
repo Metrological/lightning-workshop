@@ -246,7 +246,7 @@ class Example extends RenderTreeExample {
 
                     });
                 },
-                h: ["TopBorder","BottomBorder","LeftBorder","RightBorder"],
+                h: ["TopBorder.w","BottomBorder.w","BottomBorder.y","LeftBorder.h","RightBorder.h","RightBorder.x"],
                 c: {
                     Main: {
                         TopBorder: {rect: true, w:"w=>w",h:true},

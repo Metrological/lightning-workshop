@@ -153,24 +153,17 @@ export default class LiveEditor extends lng.Component {
         ]
     }
 
-    // _handleKey(event) {
-    //     if (event.keyCode === 81 && event.altKey) {
-    //         this.fire('_handleSwitchFocus');
-    //     } else if (event.keyCode === 39 && event.altKey) {
-    //         this.fire('_nextStep');
-    //     } else if (event.keyCode === 37 && event.altKey) {
-    //         this.fire('_prevStep');
-    //     } else if (event.keyCode === 87 && event.altKey) {
-    //         this.fire('_reload');
-    //     } else if (event.keyCode === 27 && event.altKey) {
-    //         this._exportUndoStack()
-    //     }
-    //     return false;
-    // }
-
     _handleKey(event) {
-        if (event.keyCode === 36) {
+        if (event.keyCode === 81 && event.altKey) {
             this.fire('_handleSwitchFocus');
+        } else if (event.keyCode === 39 && event.altKey) {
+            this.fire('_nextStep');
+        } else if (event.keyCode === 37 && event.altKey) {
+            this.fire('_prevStep');
+        } else if (event.keyCode === 87 && event.altKey) {
+            this.fire('_reload');
+        } else if (event.keyCode === 27 && event.altKey) {
+            this._exportUndoStack()
         } else if (event.keyCode === 187) {
             this.fire('_nextStep');
         } else if (event.keyCode === 189) {

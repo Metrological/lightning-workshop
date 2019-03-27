@@ -1,5 +1,7 @@
 import FrontPage from "./pages/front/FrontPage.js";
 import RenderEngine from "./pages/renderEngine/RenderEngine.js";
+import SDK from "./pages/SDK/SDK.js";
+import CreateApp from "./pages/SDK/CreateApp.js";
 import Introduction from "./pages/Introduction.js";
 import GettingStarted from "./pages/GettingStarted.js";
 import DemoApps from "./pages/DemoApps.js";
@@ -12,6 +14,7 @@ import Transforms from "./pages/renderEngine/Transforms.js";
 import Rendering from "./pages/renderEngine/Rendering.js";
 import Textures from "./pages/renderEngine/Textures.js";
 import Flexbox from "./pages/renderEngine/Flexbox.js";
+import Planning from "./pages/Planning.js";
 
 export default class Content extends lng.Component {
 
@@ -51,8 +54,10 @@ export default class Content extends lng.Component {
     _setup() {
         this.tag("Pages").children = [
             {type: FrontPage},
-            {type: Introduction},
-            {type: GettingStarted},
+            // {type: Introduction},
+            // {type: GettingStarted},
+            {type: Planning},
+            {type: RenderEngine},
             {type: Positioning},
             {type: PositioningProps},
             {type: Transforms},
@@ -61,8 +66,9 @@ export default class Content extends lng.Component {
             {type: RenderingProps},
             {type: Textures},
             {type: Flexbox},
-            {type: RenderEngine},
             {type: DemoApps},
+            {type: SDK},
+            {type: CreateApp},
         ];
         this._index = -1;
 
