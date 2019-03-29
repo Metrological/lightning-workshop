@@ -3390,7 +3390,8 @@ var lng = (function () {
             } else {
                 this._disableFuncX();
                 if (this.hasFlexLayout()) {
-                    this.x += (v - this._layout.originalX);
+                    this._x += (v - this._layout.originalX);
+                    this._triggerRecalcTranslate();
                     this._layout.setOriginalXWithoutUpdatingLayout(v);
                 } else {
                     this.x = v;
@@ -3450,7 +3451,8 @@ var lng = (function () {
             } else {
                 this._disableFuncY();
                 if (this.hasFlexLayout()) {
-                    this.y += (v - this._layout.originalY);
+                    this._y += (v - this._layout.originalY);
+                    this._triggerRecalcTranslate();
                     this._layout.setOriginalYWithoutUpdatingLayout(v);
                 } else {
                     this.y = v;
@@ -7235,7 +7237,6 @@ var lng = (function () {
 
         stop() {
             // Just stop where the transition is at.
-            this.emit('stop');
             this.manager.removeActive(this);
         }
 
@@ -7800,14 +7801,14 @@ var lng = (function () {
     class View {
 
         constructor(stage) {
-            this.stage = stage;
-
-            this.__id = View.id++;
-
             this.__start();
 
             // EventEmitter constructor.
             this._hasEventListeners = false;
+
+            this.__id = View.id++;
+
+            this.stage = stage;
 
             this.__core = new ViewCore(this);
 
@@ -9853,7 +9854,7 @@ var lng = (function () {
         }
 
         static isColorProperty(property) {
-            return property.toLowerCase().indexOf("color") >= 0;
+            return property.indexOf("color") >= 0;
         }
 
         static getMerger(property) {
@@ -9885,10 +9886,8 @@ var lng = (function () {
         }
 
         static setupStateMachine(target) {
-            const targetConstructor = target.constructor;
-            const router = StateMachine.create(targetConstructor);
+            const router = StateMachine.create(target.constructor);
             Object.setPrototypeOf(target, router.prototype);
-            target.constructor = targetConstructor;
             target._initStateMachine();
         }
 
@@ -10185,6 +10184,7 @@ var lng = (function () {
                     if (!this.constructor.hasOwnProperty('_isRouter')) {
                         throw new Error(`You need to extend ${type.name}.original instead of ${type.name}.`);
                     }
+                    this._initStateMachine();
                 }
             };
             router._isRouter = true;
@@ -10536,23 +10536,10 @@ var lng = (function () {
                 if (!isInheritedFromParent) {
                     const subStates = state._states();
                     subStates.forEach(subState => {
-                        const stateName = StateMachineType._getStateName(subState);
-                        this._addState(subState, state, stateName, stateMap);
+                        this._addState(subState, state, subState.name, stateMap);
                     });
                 }
             }
-        }
-
-        static _getStateName(state) {
-            const name = state.name;
-
-            const index = name.indexOf('$');
-            if (index > 0) {
-                // Strip off rollup name suffix.
-                return name.substr(0, index);
-            }
-
-            return name;
         }
 
         _addStaticStateProperty(state, parentState) {
@@ -12009,7 +11996,7 @@ var lng = (function () {
 
     }
 
-    class DefaultShader extends WebGLShader {
+    class DefaultShader$1 extends WebGLShader {
 
         enableAttribs() {
             // Enables the attribs in the shader program.
@@ -12073,7 +12060,7 @@ var lng = (function () {
 
     }
 
-    DefaultShader.vertexShaderSource = `
+    DefaultShader$1.vertexShaderSource = `
     #ifdef GL_ES
     precision lowp float;
     #endif
@@ -12091,7 +12078,7 @@ var lng = (function () {
     }
 `;
 
-    DefaultShader.fragmentShaderSource = `
+    DefaultShader$1.fragmentShaderSource = `
     #ifdef GL_ES
     precision lowp float;
     #endif
@@ -12131,7 +12118,7 @@ var lng = (function () {
         }
 
         createShader(ctx, settings) {
-            const shaderType = settings.type;
+            const shaderType = settings.type || DefaultShader;
             // If shader type is not correct, use a different platform.
             if (!this.isValidShaderType(shaderType)) {
                 const convertedShaderType = this._getShaderAlternative(shaderType);
@@ -12171,7 +12158,7 @@ var lng = (function () {
         }
 
         _createDefaultShader(ctx) {
-            return new DefaultShader(ctx);
+            return new DefaultShader$1(ctx);
         }
 
         _getShaderBaseType() {
@@ -12575,7 +12562,7 @@ var lng = (function () {
 
     }
 
-    class DefaultShader$1 extends C2dShader {
+    class DefaultShader$2 extends C2dShader {
 
         constructor(ctx) {
             super(ctx);
@@ -12930,7 +12917,7 @@ var lng = (function () {
         }
 
         _createDefaultShader(ctx) {
-            return new DefaultShader$1(ctx);
+            return new DefaultShader$2(ctx);
         }
 
         _getShaderBaseType() {
@@ -13028,12 +13015,6 @@ var lng = (function () {
             this._id = 0;
 
             this._initWorker();
-        }
-
-        destroy() {
-            if (this._worker) {
-                this._worker.terminate();
-            }
         }
 
         _initWorker() {
@@ -13349,12 +13330,6 @@ var lng = (function () {
             }
         }
 
-        destroy() {
-            if (this._imageWorker) {
-                this._imageWorker.destroy();
-            }
-        }
-
         startLoop() {
             this._looping = true;
             if (!this._awaitingLoop) {
@@ -13500,7 +13475,7 @@ var lng = (function () {
 
         registerKeyHandler(keyhandler) {
             window.addEventListener('keydown', e => {
-                keyhandler(e);
+                keyhandler({keyCode: e.keyCode});
             });
         }
 
@@ -14569,6 +14544,10 @@ var lng = (function () {
 
             // Should be reloaded.
             textureSource.loadingSince = null;
+
+            // Delete it from the texture source hashmap to allow GC to collect it.
+            // If it is still referenced somewhere, we'll re-add it later.
+            this.removeFromLookupMap(textureSource);
         }
 
         _nativeUploadTextureSource(textureSource, options) {
@@ -15974,7 +15953,7 @@ var lng = (function () {
             this._usedMemory = 0;
             this._lastGcFrame = 0;
 
-            const platformType = Stage.platform ? Stage.platform : PlatformLoader.load(options);
+            const platformType = PlatformLoader.load(options);
             this.platform = new platformType();
 
             if (this.platform.init) {
@@ -16031,6 +16010,8 @@ var lng = (function () {
             this.animations = new AnimationManager(this);
 
             this.textureManager = new TextureManager(this);
+
+            this._destroyed = false;
 
             this.startTime = 0;
             this.currentTime = 0;
@@ -16101,8 +16082,8 @@ var lng = (function () {
 
             opt('canvas', null);
             opt('context', null);
-            opt('w', 1920);
-            opt('h', 1080);
+            opt('w', 1280);
+            opt('h', 720);
             opt('srcBasePath', null);
             opt('memoryPressure', 24e6);
             opt('bufferMemory', 2e6);
@@ -16110,6 +16091,8 @@ var lng = (function () {
             opt('clearColor', [0, 0, 0, 0]);
             opt('defaultFontFace', 'sans-serif');
             opt('fixedDt', 0);
+            opt('useTextureAtlas', false);
+            opt('debugTextureAtlas', false);
             opt('useImageWorker', true);
             opt('autostart', true);
             opt('precision', 1);
@@ -16129,11 +16112,14 @@ var lng = (function () {
         }
 
         destroy() {
-            this.platform.stopLoop();
-            this.platform.destroy();
-            this.ctx.destroy();
-            this.textureManager.destroy();
-            this._renderer.destroy();
+            if (!this._destroyed) {
+                this.application.destroy();
+                this.platform.stopLoop();
+                this.ctx.destroy();
+                this.textureManager.destroy();
+                this._renderer.destroy();
+                this._destroyed = true;
+            }
         }
 
         stop() {
@@ -16141,6 +16127,9 @@ var lng = (function () {
         }
 
         resume() {
+            if (this._destroyed) {
+                throw new Error("Already destroyed");
+            }
             this.platform.startLoop();
         }
 
@@ -16397,15 +16386,7 @@ var lng = (function () {
             };
 
             opt('debug', false);
-            opt('keys', {
-                38: "Up",
-                40: "Down",
-                37: "Left",
-                39: "Right",
-                13: "Enter",
-                9: "Back",
-                27: "Exit"
-            });
+            opt('keys', {});
         }
 
         __construct() {
@@ -16598,7 +16579,7 @@ var lng = (function () {
         }
 
         _receiveKeydown(e) {
-            const obj = e;
+            const obj = {keyCode: e.keyCode};
             if (this.__keymap[e.keyCode]) {
                 if (!this.stage.application.focusTopDownEvent(["_capture" + this.__keymap[e.keyCode], "_captureKey"], obj)) {
                     this.stage.application.focusBottomUpEvent(["_handle" + this.__keymap[e.keyCode], "_handleKey"], obj);
@@ -16612,24 +16593,11 @@ var lng = (function () {
         }
 
         destroy() {
-            if (!this._destroyed) {
-                this._destroy();
-                this.stage.destroy();
-                this._destroyed = true;
-            }
-        }
-
-        _destroy() {
             // This forces the _detach, _disabled and _active events to be called.
             this.stage.root = undefined;
             this._updateAttachedFlag();
             this._updateEnabledFlag();
         }
-
-        getCanvas() {
-            return this.stage.getCanvas();
-        }
-        
     }
 
     class StaticCanvasTexture extends Texture {
@@ -17634,7 +17602,7 @@ var lng = (function () {
 
     }
 
-    class LinearBlurShader extends DefaultShader {
+    class LinearBlurShader extends DefaultShader$1 {
 
         constructor(context) {
             super(context);
@@ -17747,7 +17715,7 @@ var lng = (function () {
     /**
      * 4x4 box blur shader which works in conjunction with a 50% rescale.
      */
-    class BoxBlurShader extends DefaultShader {
+    class BoxBlurShader extends DefaultShader$1 {
 
         setupUniforms(operation) {
             super.setupUniforms(operation);
@@ -17799,7 +17767,7 @@ var lng = (function () {
     }
 `;
 
-    class BlurShader extends DefaultShader$1 {
+    class BlurShader extends DefaultShader$2 {
 
         constructor(context) {
             super(context);
@@ -18190,7 +18158,7 @@ var lng = (function () {
     /**
      * Shader that combines two textures into one output.
      */
-    class FastBlurOutputShader extends DefaultShader {
+    class FastBlurOutputShader extends DefaultShader$1 {
 
         constructor(ctx) {
             super(ctx);
@@ -18425,7 +18393,7 @@ var lng = (function () {
 
     }
 
-    class BloomBaseShader extends DefaultShader {
+    class BloomBaseShader extends DefaultShader$1 {
     }
 
     BloomBaseShader.fragmentShaderSource = `
@@ -18723,7 +18691,7 @@ var lng = (function () {
 
     }
 
-    class GrayscaleShader extends DefaultShader$1 {
+    class GrayscaleShader extends DefaultShader$2 {
 
         constructor(context) {
             super(context);
@@ -18758,7 +18726,7 @@ var lng = (function () {
 
     }
 
-    class GrayscaleShader$1 extends DefaultShader {
+    class GrayscaleShader$1 extends DefaultShader$1 {
 
         constructor(context) {
             super(context);
@@ -18808,7 +18776,7 @@ var lng = (function () {
     /**
      * This shader can be used to fix a problem that is known as 'gradient banding'.
      */
-    class DitheringShader extends DefaultShader {
+    class DitheringShader extends DefaultShader$1 {
 
         constructor(ctx) {
             super(ctx);
@@ -18968,7 +18936,7 @@ var lng = (function () {
     }
 `;
 
-    class CircularPushShader extends DefaultShader {
+    class CircularPushShader extends DefaultShader$1 {
 
         constructor(ctx) {
             super(ctx);
@@ -19197,7 +19165,7 @@ var lng = (function () {
     }
 `;
 
-    class InversionShader extends DefaultShader {
+    class InversionShader extends DefaultShader$1 {
     }
 
     InversionShader.fragmentShaderSource = `
@@ -19209,12 +19177,12 @@ var lng = (function () {
     uniform sampler2D uSampler;
     void main(void){
         vec4 color = texture2D(uSampler, vTextureCoord);
-        color.rgb = (1.0 * color.a - color.rgb); 
+        color.rgb = 1.0 - color.rgb; 
         gl_FragColor = color * vColor;
     }
 `;
 
-    class OutlineShader extends DefaultShader {
+    class OutlineShader extends DefaultShader$1 {
 
         constructor(ctx) {
             super(ctx);
@@ -19351,7 +19319,7 @@ var lng = (function () {
     /**
      * @see https://github.com/pixijs/pixi-filters/tree/master/filters/pixelate/src
      */
-    class PixelateShader extends DefaultShader {
+    class PixelateShader extends DefaultShader$1 {
 
         constructor(ctx) {
             super(ctx);
@@ -19501,7 +19469,7 @@ var lng = (function () {
     }
 `;
 
-    class RadialFilterShader extends DefaultShader {
+    class RadialFilterShader extends DefaultShader$1 {
         constructor(context) {
             super(context);
             this._radius = 0;
@@ -19576,7 +19544,7 @@ var lng = (function () {
     }
 `;
 
-    class RadialGradientShader extends DefaultShader {
+    class RadialGradientShader extends DefaultShader$1 {
         
         constructor(context) {
             super(context);
@@ -19700,7 +19668,7 @@ var lng = (function () {
     }
 `;
 
-    class Light3dShader extends DefaultShader {
+    class Light3dShader extends DefaultShader$1 {
 
         constructor(ctx) {
             super(ctx);
@@ -19966,9 +19934,9 @@ var lng = (function () {
             RadialGradient: RadialGradientShader,
             Light3d: Light3dShader,
             WebGLShader,
-            WebGLDefaultShader: DefaultShader,
+            WebGLDefaultShader: DefaultShader$1,
             C2dShader,
-            C2dDefaultShader: DefaultShader$1,
+            C2dDefaultShader: DefaultShader$2,
             c2d: {
                 Grayscale: GrayscaleShader,
                 Blur: BlurShader
@@ -19997,10 +19965,6 @@ var lng = (function () {
             ObjectListWrapper
         }
     };
-
-    if (Utils.isWeb) {
-        window.lng = lightning;
-    }
 
     return lightning;
 

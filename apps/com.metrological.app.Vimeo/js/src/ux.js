@@ -34,7 +34,6 @@ var ux = (function () {
             this.videoEl.setAttribute('id', 'video-player');
             this.videoEl.style.position = 'absolute';
             this.videoEl.style.zIndex = '1';
-            this.videoEl.style.display = 'none';
             this.videoEl.setAttribute('width', '100%');
             this.videoEl.setAttribute('height', '100%');
 
@@ -186,8 +185,6 @@ var ux = (function () {
             }
             if (this.videoEl.getAttribute('src') === url) return this.reload();
             this.videoEl.setAttribute('src', url);
-
-            this.videoEl.style.display = 'block';
         }
 
         close() {
@@ -199,8 +196,6 @@ var ux = (function () {
             this.videoEl.load();
 
             this._clearSrc();
-
-            this.videoEl.style.display = 'none';
         }
 
         playPause() {
@@ -355,6 +350,10 @@ var ux = (function () {
             }
         }
 
+        set muted(v){
+            this.videoEl.muted = !!v;
+        }
+
         static _states() {
             return [
                 class Playing extends this {
@@ -394,130 +393,28 @@ var ux = (function () {
 
     }
 
-    class NoopMediaplayer extends lng.Component {
-
-        static _template() {
-            return {
-                Video: {
-                    w: 1920, h: 1080
-                }
-            };
-        }
-
-        open(url) {
-            console.log('Playing stream', url);
-        }
-
-        close() {
-        }
-
-        playPause() {
-            if (this.isPlaying()) {
-                this.doPause();
-            } else {
-                this.doPlay();
-            }
-        }
-
-        isPlaying() {
-            return (this._getState() === "Playing");
-        }
-
-        doPlay() {
-        }
-
-        doPause() {
-        }
-
-        reload() {
-        }
-
-        getPosition() {
-            return Promise.resolve(0);
-        }
-
-        setPosition(pos) {
-        }
-
-        getDuration() {
-            return Promise.resolve(0);
-        }
-
-        seek(time, absolute = false) {
-        }
-
-        updateSettings(settings = {}) {
-        }
-
-        static _states() {
-            return [
-                class Playing extends this {
-                    static _states() {
-                        return [
-                            class Paused extends this {
-                            }
-                        ]
-                    }
-                }
-            ]
-        }
-
-    }
-
     class Ui extends lng.Application {
 
-        constructor(options) {
-            options.defaultFontFace = options.defaultFontFace || "RobotoRegular";
-            super(options);
-        }
-
         static _template() {
             return {
-                Mediaplayer: {type: lng.Utils.isWeb ? Mediaplayer : NoopMediaplayer, textureMode: Ui.hasOption('texture')},
+                Mediaplayer: {type: Mediaplayer, textureMode: Ui.hasOption('texture')},
                 AppWrapper: {}
             };
-        }
-
-        static set staticFilesPath(path) {
-            this._staticFilesPath = path;
         }
 
         get mediaplayer() {
             return this.tag("Mediaplayer");
         }
 
-        startApp(appClass) {
-            this._setState("App.Loading", [appClass]);
+        startApp(appDefinition) {
+            this._setState("App.Loading", [appDefinition]);
         }
 
         stopApp() {
         }
 
         _handleBack() {
-            if (lng.Utils.isWeb) {
-                window.close();
-            }
-        }
-
-        static loadFonts(fonts) {
-            if (lng.Utils.isNode) {
-                // Font loading not supported. Fonts should be installed in Linux system and then they can be picked up by cairo.
-                return Promise.resolve();
-            }
-
-            const fontFaces = fonts.map(({family, url, descriptors}) => new FontFace(family, `url(${url})`, descriptors));
-            fontFaces.forEach(fontFace => {
-                document.fonts.add(fontFace);
-            });
-            return Promise.all(fontFaces.map(ff => ff.load())).then(() => {return fontFaces});
-        }
-
-        static getPath(relPath) {
-            return this._staticFilesPath + "static-ux/" + relPath;
-        }
-
-        static getFonts() {
-            return [{family: 'RobotoRegular', url: Ui.getPath('fonts/roboto-regular.ttf'), descriptors: {}}]
+            window.close();
         }
 
         static _states() {
@@ -529,19 +426,24 @@ var ux = (function () {
                     static _states() {
                         return [
                             class Loading extends this {
-                                $enter(context, appClass) {
-                                    this._startApp(appClass);
+                                $enter(context, appDefinition) {
+                                    this._startApp(appDefinition);
                                 }
-                                _startApp(appClass) {
+                                _startApp(v) {
                                     this._currentApp = {
-                                        type: appClass,
+                                        def: v,
+                                        type: v.getAppViewType(),
                                         fontFaces: []
                                     };
 
                                     // Preload fonts.
                                     const fonts = this._currentApp.type.getFonts();
-                                    Ui.loadFonts(fonts.concat(Ui.getFonts())).then((fontFaces) => {
-                                        this._currentApp.fontFaces = fontFaces;
+                                    const fontFaces = fonts.map(({family, url, descriptors}) => new FontFace(family, `url(${url})`, descriptors));
+                                    this._currentApp._fontFaces = fontFaces;
+                                    fontFaces.forEach(fontFace => {
+                                        document.fonts.add(fontFace);
+                                    });
+                                    Promise.all(fontFaces.map(ff => ff.load())).then(() => {
                                         this._done();
                                     }).catch((e) => {
                                         console.warn('Font loading issues: ' + e);
@@ -604,22 +506,14 @@ var ux = (function () {
         }
 
         static _getCdnProtocol() {
-            return lng.Utils.isWeb && location.protocol === "https" ? "https" : "http";
+            return location.protocol === "https" ? "https" : "http";
         }
 
         static hasOption(name) {
-            if (lng.Utils.isNode) {
-                return false;
-            }
-
             return (document.location.href.indexOf(name) >= 0)
         }
 
         static getOption(name) {
-            if (lng.Utils.isNode) {
-                return undefined;
-            }
-
             return new URL(document.location.href).searchParams.get(name)
         }
 
@@ -636,7 +530,36 @@ var ux = (function () {
 
     }
 
-    Ui._staticFilesPath = "./";
+    class AppDefinition extends lng.EventEmitter {
+
+        constructor(application) {
+            super();
+            this.application = application;
+        }
+
+        get identifier() {
+            const identifier = this.constructor.identifier;
+            if (!identifier) throw new Error("Application does not have an identifier: " + this.constructor.name);
+            return identifier;
+        }
+
+        getPath(relPath) {
+            return AppDefinition.getPath(this.constructor, relPath);
+        }
+
+        static getPath(relPath) {
+            return "apps/" + this.identifier + "/static/" + relPath;
+        }
+
+        static get identifier() {
+            throw new Error("Please supply an identifier in the App definition file.");
+        }
+
+        getAppViewType() {
+            throw new Error("Please specify the app view type.");
+        }
+
+    }
 
     class App extends lng.Component {
 
@@ -650,18 +573,6 @@ var ux = (function () {
          */
         static getFonts() {
             return [];
-        }
-
-        getPath(relPath) {
-            return App.getPath(this.constructor, relPath);
-        }
-
-        static getPath(relPath) {
-            return "static/" + relPath;
-        }
-
-        static get identifier() {
-            throw new Error("Please supply an identifier in the App definition file.");
         }
 
     }
@@ -678,7 +589,7 @@ var ux = (function () {
         }
 
         set icon(source) {
-            this.tag("Icon").src = Ui.getPath(`tools/player/img/${source}`);
+            this.tag("Icon").src = `static/tools/player/img/${source}`;
         }
 
         set active(v) {
@@ -1117,10 +1028,6 @@ var ux = (function () {
             return this.tag("Controls");
         }
 
-        _setFocusSettings(settings) {
-            settings.mediaplayer.consumer = this;
-        }
-
         getMediaplayerSettings() {
             return {
                 stream: {src: this._stream.link}
@@ -1401,13 +1308,12 @@ var ux = (function () {
 
     const ux = {
         Ui,
+        AppDefinition,
         App,
         tools
     };
 
-    if (typeof window !== "undefined") {
-        window.ux = ux;
-    }
+    window.ux = ux;
 
     return ux;
 

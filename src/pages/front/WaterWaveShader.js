@@ -42,24 +42,6 @@ export default class WaterWaveShader extends lng.shaders.WebGLDefaultShader {
 
 }
 
-WaterWaveShader.vertexShaderSource = `
-    #ifdef GL_ES
-    precision lowp float;
-    #endif
-    attribute vec2 aVertexPosition;
-    attribute vec2 aTextureCoord;
-    attribute vec4 aColor;
-    uniform vec2 projection;
-    varying vec2 vTextureCoord;
-    varying vec4 vColor;
-    void main(void){
-        gl_Position = vec4(aVertexPosition.x * projection.x - 1.0, aVertexPosition.y * -abs(projection.y) + 1.0, 0.0, 1.0);
-        vTextureCoord = aTextureCoord;
-        vColor = aColor;
-        gl_Position.y = -sign(projection.y) * gl_Position.y;
-    }
-`;
-
 WaterWaveShader.fragmentShaderSource = `
     #ifdef GL_ES
     precision lowp float;
@@ -69,7 +51,6 @@ WaterWaveShader.fragmentShaderSource = `
     varying vec4 vColor;
     uniform vec2 projection;
     uniform sampler2D uSampler;
-    uniform sampler2D uSamplerSky;
     uniform float t;
     uniform vec3 texDims;
     uniform vec3 dims;

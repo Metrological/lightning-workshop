@@ -5,7 +5,7 @@ export default class DemoApps extends Page {
         return {
             Background: {w: 1920, h: 980, rect: true, color: 0xFF222222},
             Apps: {
-                x: 960, mountX: 0.5,
+                x: 940, mountX: 0.5,
                 y: 280
             }
         }
@@ -21,15 +21,20 @@ export default class DemoApps extends Page {
 
     _construct() {
         this._apps = [
-           {identifier: "com.metrological.app.ARD", title: "ARD"},
-            {identifier: "com.metrological.app.VEVO", title: "VEVO"},
-            {identifier: "com.metrological.app.Vimeo", title: "Vimeo"}
+            // {identifier: "com.metrological.app.TuneIn", title: "TuneIn"},
+            {identifier: "com.metrological.app.2048", title: "2048"},
+            // {identifier: "com.metrological.app.France24", title: "France24"},
+            // {identifier: "com.metrological.app.WSJ", title: "Wallstreet Journal"},
+            // {identifier: "com.metrological.app.CNN", title: "CNN"},
+            // {identifier: "com.metrological.app.Vimeo", title: "Vimeo"},
+            // {identifier: "com.metrological.app.VEVO", title: "VEVO"},
+            {identifier: "com.metrological.app.Dailymotion", title: "Dailymotion"},
         ];
     }
 
     _setup() {
-        this.tag("Apps").children = this._apps.map((app, index) => ({type: App, identifier: app.identifier, title: app.title, x: (index % 6) * 310, y: Math.floor(index / 6) * 310}));
-        this.tag("Apps").w = (this._apps.length * 310) - 50;
+        this.tag("Apps").children = this._apps.map((app, index) => ({type: App, identifier: app.identifier, title: app.title, x: (index % 7) * 270, y: Math.floor(index / 7) * 290}));
+        this.tag("Apps").w = (this._apps.length * 270) - 50;
         this._setIndex(0);
     }
 
@@ -83,6 +88,7 @@ class App extends lng.Component {
 
     _focus() {
         this.patch({
+            zIndex: 1,
             Holder: {
                 smooth: {scale: 1.2}, color: 0xffffffff
             },
@@ -94,6 +100,7 @@ class App extends lng.Component {
 
     _unfocus() {
         this.patch({
+            zIndex: 0,
             Holder: {
                 smooth: {scale: 1}, color: 0x00ffffff
             },

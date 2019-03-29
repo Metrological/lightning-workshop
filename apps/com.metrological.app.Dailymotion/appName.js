@@ -1,0 +1,1 @@
+window.appName = 'com.metrological.app.Dailymotion';
