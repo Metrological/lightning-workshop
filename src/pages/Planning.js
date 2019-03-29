@@ -11,11 +11,13 @@ export default class Planning extends Page {
                 Wrap: {
                     flex: {direction: 'column'},
                     children: [
-                        {type: BulletPoint, Content: {Point: {text:{fontSize: 60}}}, content: {text: {text: "Presentation: Lightning render engine", fontSize: 60}}},
-                        {type: BulletPoint, Content: {Point: {text:{fontSize: 60}}}, content: {text: {text: "App presentations", fontSize: 60}}},
-                        {type: BulletPoint, Content: {Point: {text:{fontSize: 60}}}, content: {text: {text: "SDK status update", fontSize: 60}}},
-                        {type: BulletPoint, Content: {Point: {text:{fontSize: 60}}}, content: {text: {text: "WBSO", fontSize: 60}}},
-                        {type: BulletPoint, Content: {Point: {text:{fontSize: 60}}}, content: {text: {text: "Open discussion", fontSize: 60}}},
+                        {type: BulletPoint, Content: {Point: {text:{fontSize: 60}}}, content: {text: {text: "App demos", fontSize: 60}}},
+                        {type: BulletPoint, Content: {Point: {text:{fontSize: 60}}}, content: {text: {text: "Render engine", fontSize: 60}}},
+                        {type: BulletPoint, Content: {Point: {text:{fontSize: 60}}}, content: {text: {text: "Components", fontSize: 60}}},
+                        {type: BulletPoint, Content: {Point: {text:{fontSize: 60}}}, content: {text: {text: "Remote input", fontSize: 60}}},
+                        {type: BulletPoint, Content: {Point: {text:{fontSize: 60}}}, content: {text: {text: "Transitions & animations", fontSize: 60}}},
+                        {type: BulletPoint, Content: {Point: {text:{fontSize: 60}}}, content: {text: {text: "Questions", fontSize: 60}}},
+                        {type: BulletPoint, Content: {Point: {text:{fontSize: 60}}}, content: {text: {text: "Hackathon", fontSize: 60}}},
                     ]
                 }
             }

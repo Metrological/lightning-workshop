@@ -2017,11 +2017,12 @@ var lng = (function () {
 
             if (v === undefined) {
                 this._alignSelf = undefined;
+            } else {
+                if (FlexContainer.ALIGN_ITEMS.indexOf(v) === -1) {
+                    throw new Error("Unknown alignSelf, options: " + FlexContainer.ALIGN_ITEMS.join(","));
+                }
+                this._alignSelf = v;
             }
-            if (FlexContainer.ALIGN_ITEMS.indexOf(v) === -1) {
-                throw new Error("Unknown alignSelf, options: " + FlexContainer.ALIGN_ITEMS.join(","));
-            }
-            this._alignSelf = v;
 
             this._changed();
         }
@@ -2348,6 +2349,9 @@ var lng = (function () {
         }
 
         get flexItem() {
+            if (this._flexItemDisabled) {
+                return false;
+            }
             this._ensureFlexItem();
             return this._flexItem;
         }
@@ -5664,13 +5668,6 @@ var lng = (function () {
         get isShader() {
             return true;
         }
-
-        getNonDefaults() {
-            let nonDefaults = {};
-            nonDefaults['type'] = this.constructor.name;
-            return nonDefaults;
-        }
-
     }
 
     class Texture {
@@ -8738,9 +8735,8 @@ var lng = (function () {
         mtag(tag) {
             let idx = tag.indexOf(".");
             if (idx >= 0) {
-                let res = null;
                 let parts = tag.split('.');
-                res = this._getByTag(parts[0]);
+                let res = this._getByTag(parts[0]);
                 let level = 1;
                 let c = parts.length;
                 while (res.length && level < c) {
@@ -15579,6 +15575,10 @@ var lng = (function () {
 
         isStopping() {
             return this._state === Animation.STATES.STOPPING;
+        }
+
+        isFinished() {
+            return this._state === Animation.STATES.FINISHED;
         }
 
         checkActive() {

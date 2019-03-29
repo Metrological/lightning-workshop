@@ -296,6 +296,14 @@ class Example extends RenderTreeExample {
             },
             {
                 f: () => {
+                    this._main.tag("Lil").zIndex = -1;
+                    this._main.tag("Idle").zIndex = 0;
+                    this._main.tag("Lil.Baby").zIndex = 0;
+                },
+                h: ["Lil.zIndex"]
+            },
+            {
+                f: () => {
                     this._main.tag("Lil").zIndex = 0;
                     this._main.tag("Lil.Baby").zIndex = 0;
                     this._main.tag("Idle").zIndex = 1;
@@ -312,22 +320,6 @@ class Example extends RenderTreeExample {
             },
             {
                 f: () => {
-                    this._main.tag("Lil").zIndex = 1;
-                    this._main.tag("Lil.Baby").zIndex = 1;
-                    this._main.tag("Idle").zIndex = 0;
-                },
-                h: ["Lil.zIndex", "Lil.Baby.zIndex"]
-            },
-            {
-                f: () => {
-                    this._main.tag("Lil").zIndex = -1;
-                    this._main.tag("Lil.Baby").zIndex = 1;
-                    this._main.tag("Idle").zIndex = 0;
-                },
-                h: ["Lil.zIndex", "Lil.Baby.zIndex"]
-            },
-            {
-                f: () => {
                     this._main.tag("Lil").zIndex = 0;
                     this._main.tag("Lil").forceZIndexContext = true;
                     this._main.tag("Lil.Baby").zIndex = 1;
@@ -340,7 +332,7 @@ class Example extends RenderTreeExample {
                         }
                     }
                 },
-                h: ["Lil.zIndex", "Lil.Baby.zIndex", "Lil.forceZIndexContext"]
+                h: ["Lil.forceZIndexContext"]
             },
             {
                 f: () => {
