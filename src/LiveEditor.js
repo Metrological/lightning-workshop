@@ -23,8 +23,8 @@ export default class LiveEditor extends lng.Component {
         this._editorDiv.style.position = 'absolute';
         this._editorDiv.style.left = '0px';
         this._editorDiv.style.top = '0px';
-        this._editorDiv.style.fontSize = '22px';
-        this._editorDiv.style.lineHeight = '20px';
+        this._editorDiv.style.fontSize = '24px';
+        this._editorDiv.style.lineHeight = '24px';
         this._editorDiv.style.zIndex = '70000';
         this._editorDiv.style.borderRight = '2px solid black';
         this._editorDiv.style.transition = 'width 0.2s';
@@ -33,10 +33,12 @@ export default class LiveEditor extends lng.Component {
 
         this._editor = ace.edit("editor");
         this._editor.session.setMode("ace/mode/javascript");
-        this._editor.setTheme("ace/theme/textmate");
+        this._editor.setTheme("ace/theme/ambiance");
         this._editor.setOptions({cursorStyle: "wide"});
         this._editor.session.setUseWrapMode(true);
-        this._editor.renderer.setShowGutter(false);
+        // this._editor.renderer.setShowGutter(false);
+        this._editor.renderer.STEPS = 32;
+        this._editor.renderer.setAnimatedScroll(true);
         this._editor.setHighlightActiveLine(true);
 
         this._editorDiv.style.display = 'none';
@@ -48,6 +50,7 @@ export default class LiveEditor extends lng.Component {
         this.tag("Preview").clear();
         this._options = options;
         this._setState("Editor");
+        this._nextStep(true);
     }
 
     _active() {
@@ -109,7 +112,7 @@ export default class LiveEditor extends lng.Component {
                     this._setState("Preview");
                 }
 
-                _nextStep() {
+                _nextStep(noSelection = false) {
                     if (this.tag("Preview").isReloading()) {
                         return;
                     }
@@ -117,6 +120,15 @@ export default class LiveEditor extends lng.Component {
                     const stack = undoManager.$redoStack;
                     const last = stack[stack.length - 1];
                     undoManager.redo();
+
+                    if (last[0]) {
+                        this._editor.scrollToLine(last[0].end.row, true);
+                    }
+
+                    if (noSelection) {
+                        this._editor.session.selection.clearSelection();
+                    }
+
                     if (last && last[0].reload) {
                         this._setState("Editor.Reloading")
                         this._reload();
