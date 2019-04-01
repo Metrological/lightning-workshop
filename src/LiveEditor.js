@@ -64,6 +64,9 @@ export default class LiveEditor extends lng.Component {
     _setDivider(divider) {
         const dividerPosition = divider * 0.01 * 1920;
         this._editorDiv.style.width = (dividerPosition) + 'px';
+        if (divider > 20) {
+            this._editor.resize();
+        }
         this.tag("PreviewWrapper").setSmooth('x', dividerPosition);
     }
 
@@ -170,8 +173,11 @@ export default class LiveEditor extends lng.Component {
     }
 
     _handleKey(event) {
-        if (event.keyCode === 81 && event.altKey) {
-            this.fire('_handleSwitchFocus');
+        if (event.keyCode === 73 || event.keyCode === 81 && event.altKey) {
+            try {
+                this.fire('_handleSwitchFocus');
+            } catch(e) {
+            }
         } else if (event.keyCode === 39 && event.altKey) {
             this.fire('_nextStep');
         } else if (event.keyCode === 37 && event.altKey) {
@@ -180,10 +186,12 @@ export default class LiveEditor extends lng.Component {
             this.fire('_reload');
         } else if (event.keyCode === 27 && event.altKey) {
             this._exportUndoStack()
-        // } else if (event.keyCode === 187) {
-        //     this.fire('_nextStep');
-        // } else if (event.keyCode === 189) {
-        //     this.fire('_prevStep');
+        } else if (event.keyCode === 187) {
+            this.fire('_nextStep');
+        } else if (event.keyCode === 189) {
+            this.fire('_prevStep');
+        } else if (event.keyCode === 67) {
+            this.fire('_reload');
         }
         return false;
     }

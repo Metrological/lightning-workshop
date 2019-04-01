@@ -18,6 +18,7 @@ import Planning from "./pages/Planning.js";
 import LiveCoding from "./pages/live/LiveCoding.js";
 import Components from "./pages/live/Components.js";
 import States from "./pages/live/States.js";
+import Navigation from "./pages/live/Navigation.js";
 
 export default class Content extends lng.Component {
 
@@ -74,6 +75,7 @@ export default class Content extends lng.Component {
             //{type: LiveCoding},
             {type: Components},
             {type: States},
+            {type: Navigation},
         ];
         this._index = -1;
 
