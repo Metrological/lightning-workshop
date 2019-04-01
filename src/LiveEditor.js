@@ -121,7 +121,7 @@ export default class LiveEditor extends lng.Component {
                     const last = stack[stack.length - 1];
                     undoManager.redo();
 
-                    if (last[0]) {
+                    if (!noSelection && (last && last[0])) {
                         this._editor.scrollToLine(last[0].end.row, true);
                     }
 
@@ -145,7 +145,7 @@ export default class LiveEditor extends lng.Component {
             },
             class Preview extends this {
                 $enter() {
-                    this._setDivider(20);
+                    this._setDivider(5);
 
                     this._focusOutsideEditor();
                 }
@@ -165,6 +165,10 @@ export default class LiveEditor extends lng.Component {
         ]
     }
 
+    _handleUp() {
+
+    }
+
     _handleKey(event) {
         if (event.keyCode === 81 && event.altKey) {
             this.fire('_handleSwitchFocus');
@@ -176,10 +180,10 @@ export default class LiveEditor extends lng.Component {
             this.fire('_reload');
         } else if (event.keyCode === 27 && event.altKey) {
             this._exportUndoStack()
-        } else if (event.keyCode === 187) {
-            this.fire('_nextStep');
-        } else if (event.keyCode === 189) {
-            this.fire('_prevStep');
+        // } else if (event.keyCode === 187) {
+        //     this.fire('_nextStep');
+        // } else if (event.keyCode === 189) {
+        //     this.fire('_prevStep');
         }
         return false;
     }

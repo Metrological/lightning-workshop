@@ -1,7 +1,5 @@
 import FrontPage from "./pages/front/FrontPage.js";
 import RenderEngine from "./pages/renderEngine/RenderEngine.js";
-import SDK from "./pages/SDK/SDK.js";
-import CreateApp from "./pages/SDK/CreateApp.js";
 import Introduction from "./pages/Introduction.js";
 import HTML from "./pages/HTML.js";
 import GettingStarted from "./pages/GettingStarted.js";
@@ -16,8 +14,10 @@ import Rendering from "./pages/renderEngine/Rendering.js";
 import Textures from "./pages/renderEngine/Textures.js";
 import Flexbox from "./pages/renderEngine/Flexbox.js";
 import Planning from "./pages/Planning.js";
-import WBSO from "./pages/WBSO.js";
-import WBSOTopics from "./pages/WBSOTopics.js";
+
+import LiveCoding from "./pages/live/LiveCoding.js";
+import Components from "./pages/live/Components.js";
+import States from "./pages/live/States.js";
 
 export default class Content extends lng.Component {
 
@@ -56,21 +56,24 @@ export default class Content extends lng.Component {
 
     _setup() {
         this.tag("Pages").children = [
-            {type: FrontPage},
-            {type: Introduction},
-            {type: HTML},
-            {type: GettingStarted},
-            {type: Planning},
-            {type: DemoApps},
-            {type: RenderEngine},
-            {type: Positioning},
-            {type: PositioningProps},
-            {type: Transforms},
-            {type: TransformsProps},
-            {type: Rendering},
-            {type: RenderingProps},
-            {type: Textures},
-            {type: Flexbox},
+            // {type: FrontPage},
+            // {type: Introduction},
+            // {type: HTML},
+            // {type: GettingStarted},
+            // {type: Planning},
+            // {type: DemoApps},
+            // {type: RenderEngine},
+            // {type: Positioning},
+            // {type: PositioningProps},
+            // {type: Transforms},
+            // {type: TransformsProps},
+            // {type: Rendering},
+            // {type: RenderingProps},
+            // {type: Textures},
+            // {type: Flexbox},
+            //{type: LiveCoding},
+            {type: Components},
+            {type: States},
         ];
         this._index = -1;
 

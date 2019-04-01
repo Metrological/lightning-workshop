@@ -33,6 +33,7 @@ GettingStarted.index = `
 <body>
     <script type="module">
         import MyApp from "./src/MyApp.js";
+        const app = new MyApp();
         const canvas = app.getCanvas();
         document.body.appendChild(canvas);
     </script>

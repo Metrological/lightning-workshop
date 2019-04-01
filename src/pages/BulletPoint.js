@@ -4,7 +4,7 @@ export default class BulletPoint extends lng.Component {
             flex: {},
             Content: {
                 x: 100,
-                alpha: 0,
+                alpha: 0.001,
                 flex: {},
                 flexItem: {marginTop: 5, marginBottom: 5},
                 Point: {text: {text: "•", fontSize: 48}, flexItem: {marginLeft: 50, marginRight: 30}},
