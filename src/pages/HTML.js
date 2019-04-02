@@ -28,8 +28,8 @@ export default class HTML extends Page {
                         {text: "JS animation toolkit"},
                     ],
                     [
-                        {text: "CSS properties"},
-                        {text: "Lightning properties, Flexbox"},
+                        {text: "CSS style properties"},
+                        {text: "Lightning properties"},
                     ],
                     [
                         {text: "CSS layout properties"},

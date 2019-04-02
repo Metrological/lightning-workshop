@@ -196,4 +196,10 @@ export default class LiveEditor extends lng.Component {
         return false;
     }
 
+    _handleBack() {
+        try {
+            this.fire('_handleSwitchFocus');
+        } catch(e) {
+        }
+    }
 }
