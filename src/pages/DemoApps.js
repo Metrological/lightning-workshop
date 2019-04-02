@@ -21,14 +21,8 @@ export default class DemoApps extends Page {
 
     _construct() {
         this._apps = [
-            // {identifier: "com.metrological.app.TuneIn", title: "TuneIn"},
-            // {identifier: "com.metrological.app.2048", title: "2048"},
-            // {identifier: "com.metrological.app.France24", title: "France24"},
-            // {identifier: "com.metrological.app.WSJ", title: "Wallstreet Journal"},
-            // {identifier: "com.metrological.app.CNN", title: "CNN"},
-            // {identifier: "com.metrological.app.Vimeo", title: "Vimeo"},
             {identifier: "com.metrological.app.VEVO", title: "VEVO"},
-            // {identifier: "com.metrological.app.Dailymotion", title: "Dailymotion"},
+            {identifier: "com.metrological.app.AmazonMusic", title: "AmazonMusic"}
         ];
     }
 
