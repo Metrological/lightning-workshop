@@ -1,1 +1,0 @@
-window.appName = 'com.metrological.app.2048';
