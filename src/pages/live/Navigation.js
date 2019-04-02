@@ -14,8 +14,8 @@ export default class Navigation extends Page {
                     flex: {direction: 'column'},
                     children: [
                         {type: BulletPoint, content: Navigation.text("_getFocused()")},
-                        {type: BulletPoint, content: Navigation.text("_captureKey(), _handleKey()")},
-                        {type: BulletPoint, content: Navigation.text("keymap")},
+                        {type: BulletPoint, content: Navigation.text("_handleKey()")},
+                        {type: BulletPoint, content: Navigation.text("keymap (_handleLeft() etc)")},
                         {type: BulletPoint, content: Navigation.text("_focus() / _unfocus() hooks")},
                     ]
                 }
@@ -41,7 +41,7 @@ export default class Navigation extends Page {
     }
 
     static text(text, color = 0xFFFFFFFF, fontStyle = '') {
-        return {flexItem: {}, color: color, text: {text: text, fontSize: 48, fontStyle}};
+        return {flexItem: {}, color: color, text: {text: text, fontFace: 'monospace', fontSize: 48, fontStyle}};
     }
 
 }

@@ -19,13 +19,18 @@ import LiveCoding from "./pages/live/LiveCoding.js";
 import Components from "./pages/live/Components.js";
 import States from "./pages/live/States.js";
 import Navigation from "./pages/live/Navigation.js";
+import LifeCycleHooks from "./pages/live/LifeCycleHooks.js";
+import Signals from "./pages/live/Signals.js";
+import Transitions from "./pages/animations/Transitions.js";
+import Animations from "./pages/animations/Animations.js";
 
 export default class Content extends lng.Component {
 
     static _template() {
         return {
             Header: {
-                w: 1920, h: 120,
+                zIndex: 1,
+                w: 1920, h: 120, rect: true, color: 0xAA000000,
                 Title: {
                     x: 50, y: 30, text: {fontSize: 60, text: ""}
                 },
@@ -57,25 +62,29 @@ export default class Content extends lng.Component {
 
     _setup() {
         this.tag("Pages").children = [
-            // {type: FrontPage},
-            // {type: Introduction},
-            // {type: HTML},
-            // {type: GettingStarted},
-            // {type: Planning},
-            // {type: DemoApps},
-            // {type: RenderEngine},
-            // {type: Positioning},
-            // {type: PositioningProps},
-            // {type: Transforms},
-            // {type: TransformsProps},
-            // {type: Rendering},
-            // {type: RenderingProps},
-            // {type: Textures},
-            // {type: Flexbox},
-            //{type: LiveCoding},
+            {type: FrontPage},
+            {type: Introduction},
+            {type: HTML},
+            {type: GettingStarted},
+            {type: Planning},
+            {type: RenderEngine},
+            {type: Positioning},
+            {type: PositioningProps},
+            {type: Transforms},
+            {type: TransformsProps},
+            {type: Rendering},
+            {type: RenderingProps},
+            {type: Textures},
+            {type: Flexbox},
+            {type: LiveCoding},
             {type: Components},
+            {type: LifeCycleHooks},
             {type: States},
             {type: Navigation},
+            {type: Signals},
+            {type: Transitions},
+            {type: Animations},
+            {type: DemoApps},
         ];
         this._index = -1;
 

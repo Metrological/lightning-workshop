@@ -14,7 +14,6 @@ export default class LiveCoding extends Page {
                         {type: BulletPoint, content: LiveCoding.text("Movie catalogue")},
                         {type: BulletPoint, content: LiveCoding.text("List")},
                         {type: BulletPoint, content: LiveCoding.text("Details page")},
-                        {type: BulletPoint, content: LiveCoding.text("Search")},
                         {type: BulletPoint, content: LiveCoding.text("Video play")}
                     ]
                 }

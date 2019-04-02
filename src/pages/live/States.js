@@ -13,10 +13,11 @@ export default class States extends Page {
                 Wrap: {
                     flex: {direction: 'column'},
                     children: [
-                        {type: BulletPoint, content: States.text("Separation of concerns")},
-                        {type: BulletPoint, content: States.text("Encapsulation")},
-                        {type: BulletPoint, content: States.text("Template")},
-                        {type: BulletPoint, content: States.text("Life cycle hooks")},
+                        {type: BulletPoint, content: States.text("Discrete")},
+                        {type: BulletPoint, content: States.text("Hierarchical")},
+                        {type: BulletPoint, content: States.text("Finite State Machine")},
+                        {type: BulletPoint, content: States.text("State Oriented <-> Object Oriented")},
+                        {type: BulletPoint, content: States.text("$enter() / $exit()")},
                     ]
                 }
             }

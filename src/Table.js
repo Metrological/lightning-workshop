@@ -94,7 +94,7 @@ class TableRow extends lng.Component {
 class TableCell extends lng.Component {
     static _template() {
         return {
-            flexItem: {grow: 1},
+            flexItem: {grow: 1, alignSelf: 'stretch'},
             flex:{padding: 10, paddingLeft: 20},
             Contents: {y: 4},
             BorderLeft: {flexItem: false, w: 2, h: h=>h, y: 0, x: 0, rect: true, color: 0xFFAAAAAA}

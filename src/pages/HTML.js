@@ -57,6 +57,7 @@ export default class HTML extends Page {
                     color: 0xFF00FF00
                 },
                 Equals: {
+                    x: 600, y: 330,
                     text: {text: "=", fontSize: 130, shadow: true, shadowBlur: 8}
                 },
                 Performance: {
@@ -74,10 +75,9 @@ export default class HTML extends Page {
             actions: [
                 {t: 'Banner', p: 'visible', v: true, rv: false},
                 {t: 'Table', p: 'alpha', v: {0: 1, 1: 0.5}},
-                {t: 'Simplicity', p: 'x', v: {0: -1000, 1: 160}},
-                {t: 'Simplicity', p: 'y', v: {0: -1000, 1: 160}},
-                {t: 'Equals', p: 'x', v: {0: -1000, 1: 600}},
-                {t: 'Equals', p: 'y', v: {0: 330, 1: 330}},
+                {t: 'Simplicity', p: 'x', v: {0: -500, 1: 160}},
+                {t: 'Simplicity', p: 'y', v: {0: -200, 1: 160}},
+                {t: 'Equals', p: 'alpha', v: {0: 0, 1: 1}},
                 {t: 'Performance', p: 'x', v: {0: 1000, 1: 600}},
                 {t: 'Performance', p: 'y', v: {0: 1000, 1: 500}},
 
