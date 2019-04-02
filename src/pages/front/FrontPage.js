@@ -26,7 +26,7 @@ export default class FrontPage extends Page {
 
                             }
                         },
-                        Icon: {src: "./static/img/lightning-600.png", mountX: 0.5, x: 1360, y: -200, scale: 0.75},
+                        Icon: {src: "./static/img/lightning-600.png", mountX: 0.5, x: 1360, y: -150, scale: 0.75},
                     }
                 },
                 Bottom: {src: "./static/img/city-land.jpg", shader: {type: WaterWaveShader, horizon: 697}, pivot: 0, scale: 1, y: 630, w: 1920, h: 310}
@@ -53,10 +53,10 @@ export default class FrontPage extends Page {
             first = false;
             this.tag("Lightning").setSmooth('alpha', 1, {delay: 1});
             this.tag("Lightning").setSmooth('y', 400, {delay: 1});
-            this.tag("Lake").animation({duration:3,delay: 2,repeat:-1,
+            this.tag("Lake").animation({duration:9,delay: 2,repeat:-1,
                 actions:[
-                    {t: '.Comcast', p: 'scale', v: {0: 0.75, 0.5: 0.8, 1: 0.75}},
-                    {t: '.Icon', p: 'scale', v: {0: 0.8, 0.5: 0.75, 1: 0.8}},
+                    {t: '.Comcast', p: 'scale', v: {0: 0.75, 0.5: 1.0, 1: 0.75}},
+                    {t: '.Icon', p: 'scale', v: {0: 1.0, 0.5: 0.75, 1: 1.0}},
                 ]
             }).start();
         });

@@ -24,6 +24,8 @@ import Signals from "./pages/live/Signals.js";
 import Transitions from "./pages/animations/Transitions.js";
 import Animations from "./pages/animations/Animations.js";
 
+import Status from "./pages/Status.js";
+
 export default class Content extends lng.Component {
 
     static _template() {
@@ -85,6 +87,7 @@ export default class Content extends lng.Component {
             {type: Transitions},
             {type: Animations},
             {type: DemoApps},
+            {type: Status},
         ];
         this._index = -1;
 
