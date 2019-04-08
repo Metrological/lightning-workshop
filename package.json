@@ -4,6 +4,6 @@
   "version": "1.0.0",
   "license": "apache",
   "dependencies": {
-    "wpe-lightning": "file:../wpe-lightning"
+    "wpe-lightning": "https://github.com/WebPlatformForEmbedded/Lightning.git"
   }
 }
