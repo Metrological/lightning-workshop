@@ -11,7 +11,7 @@ export default class FrontPage extends Page {
             Lake: {
                 Wrapper: {
                     w: 1920, h: 800, rtt: true, y: 640, mountY: 1,
-                    Top: {y: 0, src: "./static/img/city-land.jpg", shader: {type: lng.shaders.Inversion, amount: 0}},
+                    Top: {y: -16, src: "./static/img/city-land.jpg", shader: {type: lng.shaders.Inversion, amount: 0}},
                     Lightning: {alpha: 0, y: -300,
                         Comcast: {
                             w: 942, h: 359, rtt: true,
@@ -20,8 +20,8 @@ export default class FrontPage extends Page {
                                 x: 1, y: 1,
                                 rect: true, w: 940, h: 357, color: 0xAAFFFFFF,
                                 Logo: {
-                                    x: 20, y: 20,
-                                    src: "./static/img/Comcast.png"
+                                    x: 110, y: 60,
+                                    src: "./static/img/Arris.png"
                                 }
 
                             }

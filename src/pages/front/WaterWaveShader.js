@@ -110,9 +110,9 @@ WaterWaveShader.fragmentShaderSource = `
         // Calculate top-down normal.
         vec2 delta = vec2(0.0, 0.0);
         vec2 xy = vec2(x, z);
-        addNormal(xy, 0.0125, t, 3., 5.0, 1.85*M_PI, delta);
-        addNormal(xy, 0.0225, t, 4., 6.0, -0.4*M_PI, delta);
-        addNormal(xy, 0.0125, t, 2.5, 4.0, 0.4*M_PI, delta);
+        addNormal(xy, 0.0175, t, 3., 4.0, 1.85*M_PI, delta);
+        addNormal(xy, 0.0225, t, 4., 5.0, -0.4*M_PI, delta);
+        addNormal(xy, 0.0125, t, 2.5, 3.0, 0.4*M_PI, delta);
 
         vec3 normal = normalize(vec3(delta.x, -1.0, delta.y));
         
