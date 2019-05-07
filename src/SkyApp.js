@@ -112,7 +112,7 @@ export default class App extends ux.App {
                         Sliders:{
                             smooth:{y:550, alpha:1}
                         }
-                    })
+                    });
                 }
                 $exit(){
                     this.tag("SubContent").patch({
@@ -125,7 +125,7 @@ export default class App extends ux.App {
                         Sliders:{
                             smooth:{y:750, alpha:0.4}
                         }
-                    })
+                    });
                 }
                 _handleUp(){
                     this._setState("MainContent");
@@ -334,7 +334,7 @@ class Menu extends lng.Component{
     _populate(data){
         this.tag("Items").children = data.map((item)=>{
             return {type: MenuItem, item}
-        })
+        });
     }
 
     _handleUp(){
@@ -363,7 +363,7 @@ class Menu extends lng.Component{
                     smooth:{y: index*-90}
                 }
             }
-        })
+        });
     }
 
     static _states(){
@@ -591,7 +591,7 @@ class MainSlider extends lng.Component {
                     x: !index?-7:443
                 }
             }
-        })
+        });
     }
 
     _getFocused(){
@@ -810,8 +810,22 @@ class Api{
 
     getMenuItems(){
         return new Promise((resolve, reject)=>{
-            resolve(this._menu);
-        })
+            resolve([
+                {label:"Home", section:"home"},
+                {label:"TV Guide", section:"guide"},
+                {label:"Recordings", section:"recordings"},
+                {label:"Catch Up TV", section:"catchup"},
+                {label:"On Demand", section:"demand"},
+                {label:"Sky Cinema", section:"cinema"},
+                {label:"Sky Store", section:"store"},
+                {label:"Sports", section:"sport"},
+                {label:"Kids", section:"kids"},
+                {label:"Music", section:"music"},
+                {label:"Apps", section:"apps"},
+                {label:"Online Video", section:"video"},
+                {label:"Settings", section:"settings"}
+            ]);
+        });
     }
 
     getActive(){
