@@ -153,10 +153,10 @@ export default class App extends ux.App {
                                 this.tag("Sliders").setSmooth("x",400);
                             }
                             _handleLeft(){
-                                this._setState("SubContent.Menu")
+                                this._setState("SubContent.Menu");
                             }
                             _getFocused(){
-                                return this.tag("Movies")
+                                return this.tag("Movies");
                             }
                         }
                     ]
