@@ -1,4 +1,5 @@
 import FrontPage from "./pages/front/FrontPage.js";
+import SkyUiSlide from "./pages/live/SkyUi.js";
 import RenderEngine from "./pages/renderEngine/RenderEngine.js";
 import Introduction from "./pages/Introduction.js";
 import HTML from "./pages/HTML.js";
@@ -64,6 +65,7 @@ export default class Content extends lng.Component {
 
     _setup() {
         this.tag("Pages").children = [
+            {type: SkyUiSlide},
             {type: FrontPage},
             {type: Introduction},
             {type: HTML},
@@ -78,7 +80,7 @@ export default class Content extends lng.Component {
             {type: RenderingProps},
             {type: Textures},
             {type: Flexbox},
-            {type: LiveCoding},
+            // {type: LiveCoding},
             {type: Components},
             {type: LifeCycleHooks},
             {type: States},
@@ -86,8 +88,9 @@ export default class Content extends lng.Component {
             {type: Signals},
             {type: Transitions},
             {type: Animations},
-            {type: DemoApps},
+            // {type: DemoApps},
             {type: Status},
+            {type: LiveCoding},
         ];
         this._index = -1;
 

@@ -8,7 +8,7 @@ export default class GettingStarted extends Page {
             Content: {
                 y: 100,
                 x: 40,
-                Snippet: {text: {text: GettingStarted.index, fontSize: 48, fontFace: 'monospace'}}
+                Snippet: {text: {text: GettingStarted.index, fontSize: 48, fontFace: 'helvetica'}}
             }
         }
     }

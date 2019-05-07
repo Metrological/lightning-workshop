@@ -173,6 +173,17 @@ export default class LiveEditor extends lng.Component {
     }
 
     _handleKey(event) {
+        // 73: i
+        // 81: q
+        // 37: left
+        // 38: up
+        // 39: right
+        // 40: down
+        // 87: w
+        // 27: escape
+        // 187: =
+        // 189: -
+        // 67: c
         if (event.keyCode === 73 || event.keyCode === 81 && event.altKey) {
             try {
                 this.fire('_handleSwitchFocus');

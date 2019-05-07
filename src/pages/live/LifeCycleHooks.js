@@ -10,7 +10,7 @@ export default class Components extends Page {
         const unknown = {w:220, h: h=>h-2, y: 2, flexItem: false, rect: true, color: 0xFF777722};
 
         const hookText = (text) => {
-            return {text: text, fontSize: 26, fontFace: 'monospace'}
+            return {text: text, fontSize: 26, fontFace: 'helvetica'}
         };
 
         return {

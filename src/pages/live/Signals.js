@@ -16,7 +16,7 @@ export default class Signals extends Page {
                         {type: BulletPoint, content: Signals.text("Child-Parent communication")},
                         {type: BulletPoint, content: Signals.text("Parent defines which signals are handled")},
                         {type: BulletPoint, content: Signals.text("Arguments, return value")},
-                        {type: BulletPoint, content: Signals.text("passSignals:{selected:\"select\"}", 0xFFFFFFFF, 'normal',{fontFace: "monospace"})},
+                        {type: BulletPoint, content: Signals.text("passSignals:{selected:\"select\"}", 0xFFFFFFFF, 'normal',{fontFace: "helvetica"})},
                     ]
                 }
             }

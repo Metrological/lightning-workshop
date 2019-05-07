@@ -85,12 +85,12 @@ class Example extends RenderTreeExample {
             },
             {
                 f: () => {
-                    this._main.text.fontFace = 'monospace';
+                    this._main.text.fontFace = 'helvetica';
                     this._main.text.shadow = true;
                     this._main.text.shadowColor = 0xFFFFFFFF;
                     this._main.text.paddingRight = 5;
                 },
-                c: {Element: {text: false, texture: {type: "lng.textures.TextTexture", text: true, fontSize: true, fontStyle: true, fontFace: 'monospace', shadow: true, shadowColor: true}}},
+                c: {Element: {text: false, texture: {type: "lng.textures.TextTexture", text: true, fontSize: true, fontStyle: true, fontFace: 'helvetica', shadow: true, shadowColor: true}}},
                 h: ["texture"]
             },
             {

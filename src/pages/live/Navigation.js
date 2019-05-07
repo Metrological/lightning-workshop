@@ -41,7 +41,7 @@ export default class Navigation extends Page {
     }
 
     static text(text, color = 0xFFFFFFFF, fontStyle = '') {
-        return {flexItem: {}, color: color, text: {text: text, fontFace: 'monospace', fontSize: 48, fontStyle}};
+        return {flexItem: {}, color: color, text: {text: text, fontFace: 'helvetica', fontSize: 48, fontStyle}};
     }
 
 }

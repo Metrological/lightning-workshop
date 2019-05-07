@@ -33,7 +33,7 @@ export default class TransformsProps extends Page {
     }
 
     static text(text, color = 0xFFFFFFFF, fontStyle = '') {
-        return {flexItem: {}, color: color, text: {fontFace: 'monospace', text: text, fontSize: 48, fontStyle}};
+        return {flexItem: {}, color: color, text: {fontFace: 'helvetica', text: text, fontSize: 48, fontStyle}};
     }
 
 }

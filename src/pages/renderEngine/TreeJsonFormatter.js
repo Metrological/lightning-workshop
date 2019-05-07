@@ -347,7 +347,7 @@ class JsonFormatter {
     }
 
     static text(text, color = 0xFFFFFFFF, fontStyle = '') {
-        return {flexItem: {}, color: color, text: {fontFace: 'monospace', text: text, fontSize: 22, fontStyle}};
+        return {flexItem: {}, color: color, text: {fontFace: 'helvetica', text: text, fontSize: 22, fontStyle}};
     }
 
 }
