@@ -65,7 +65,6 @@ export default class Content extends lng.Component {
 
     _setup() {
         this.tag("Pages").children = [
-            {type: SkyUiSlide},
             {type: FrontPage},
             {type: Introduction},
             {type: HTML},
@@ -90,7 +89,8 @@ export default class Content extends lng.Component {
             {type: Animations},
             // {type: DemoApps},
             {type: Status},
-            {type: LiveCoding},
+            // {type: LiveCoding},
+            {type: SkyUiSlide}
         ];
         this._index = -1;
 
