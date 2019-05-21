@@ -1,10 +1,9 @@
 import FrontPage from "./pages/front/FrontPage.js";
-import SkyUiSlide from "./pages/live/SkyUi.js";
+import ComcastApp from "./pages/live/ComcastApp.js";
 import RenderEngine from "./pages/renderEngine/RenderEngine.js";
 import Introduction from "./pages/Introduction.js";
 import HTML from "./pages/HTML.js";
 import GettingStarted from "./pages/GettingStarted.js";
-import DemoApps from "./pages/DemoApps.js";
 
 import Positioning from "./pages/renderEngine/Positioning.js";
 import PositioningProps from "./pages/renderEngine/PositioningProps.js";
@@ -16,7 +15,6 @@ import Textures from "./pages/renderEngine/Textures.js";
 import Flexbox from "./pages/renderEngine/Flexbox.js";
 import Planning from "./pages/Planning.js";
 
-import LiveCoding from "./pages/live/LiveCoding.js";
 import Components from "./pages/live/Components.js";
 import States from "./pages/live/States.js";
 import Navigation from "./pages/live/Navigation.js";
@@ -65,6 +63,7 @@ export default class Content extends lng.Component {
 
     _setup() {
         this.tag("Pages").children = [
+            {type: ComcastApp},
             {type: FrontPage},
             {type: Introduction},
             {type: HTML},
@@ -79,7 +78,6 @@ export default class Content extends lng.Component {
             {type: RenderingProps},
             {type: Textures},
             {type: Flexbox},
-            // {type: LiveCoding},
             {type: Components},
             {type: LifeCycleHooks},
             {type: States},
@@ -87,10 +85,7 @@ export default class Content extends lng.Component {
             {type: Signals},
             {type: Transitions},
             {type: Animations},
-            // {type: DemoApps},
-            {type: Status},
-            // {type: LiveCoding},
-            {type: SkyUiSlide}
+            {type: Status}
         ];
         this._index = -1;
 
