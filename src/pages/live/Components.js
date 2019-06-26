@@ -14,7 +14,6 @@ export default class Components extends Page {
                 Wrap: {
                     flex: {direction: 'column'},
                     children: [
-                        {type: BulletPoint, content: Components.text("Divide & Conquer")},
                         {type: BulletPoint, content: Components.text("Encapsulated")},
                         {type: BulletPoint, content: Components.text("Template")},
                         {type: BulletPoint, content: Components.text("States")},

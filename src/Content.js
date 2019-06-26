@@ -1,29 +1,17 @@
 import FrontPage from "./pages/front/FrontPage.js";
-import ComcastApp from "./pages/live/ComcastApp.js";
-import RenderEngine from "./pages/renderEngine/RenderEngine.js";
 import Introduction from "./pages/Introduction.js";
 import HTML from "./pages/HTML.js";
 import GettingStarted from "./pages/GettingStarted.js";
-
-import Positioning from "./pages/renderEngine/Positioning.js";
-import PositioningProps from "./pages/renderEngine/PositioningProps.js";
-import TransformsProps from "./pages/renderEngine/TransformsProps.js";
-import RenderingProps from "./pages/renderEngine/RenderingProps.js";
-import Transforms from "./pages/renderEngine/Transforms.js";
-import Rendering from "./pages/renderEngine/Rendering.js";
 import Textures from "./pages/renderEngine/Textures.js";
-import Flexbox from "./pages/renderEngine/Flexbox.js";
-import Planning from "./pages/Planning.js";
-
-import Components from "./pages/live/Components.js";
-import States from "./pages/live/States.js";
-import Navigation from "./pages/live/Navigation.js";
-import LifeCycleHooks from "./pages/live/LifeCycleHooks.js";
-import Signals from "./pages/live/Signals.js";
-import Transitions from "./pages/animations/Transitions.js";
-import Animations from "./pages/animations/Animations.js";
-
-import Status from "./pages/Status.js";
+import StatesPlayer from "./pages/live/StatesPlayer.js";
+import Step1 from "./pages/steps/Step1.js";
+import Step2 from "./pages/steps/Step2.js";
+import Step3 from "./pages/steps/Step3.js";
+import Step4 from "./pages/steps/Step4.js";
+import Step5 from "./pages/steps/Step5.js";
+import Step6 from "./pages/steps/Step6.js";
+import Step7 from "./pages/steps/Step7.js";
+import Step8 from "./pages/steps/Step8.js";
 
 export default class Content extends lng.Component {
 
@@ -63,29 +51,21 @@ export default class Content extends lng.Component {
 
     _setup() {
         this.tag("Pages").children = [
-            {type: ComcastApp},
             {type: FrontPage},
             {type: Introduction},
             {type: HTML},
             {type: GettingStarted},
-            {type: Planning},
-            {type: RenderEngine},
-            {type: Positioning},
-            {type: PositioningProps},
-            {type: Transforms},
-            {type: TransformsProps},
-            {type: Rendering},
-            {type: RenderingProps},
             {type: Textures},
-            {type: Flexbox},
-            {type: Components},
-            {type: LifeCycleHooks},
-            {type: States},
-            {type: Navigation},
-            {type: Signals},
-            {type: Transitions},
-            {type: Animations},
-            {type: Status}
+            {type: StatesPlayer},
+            {type: Step1},
+            {type: Step2},
+            {type: Step3},
+            {type: Step4},
+            {type: Step5},
+            {type: Step6},
+            {type: Step7},
+            {type: Step8}
+
         ];
         this._index = -1;
 

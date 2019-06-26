@@ -42,10 +42,6 @@ export default class HTML extends Page {
                     [
                         {text: "Style calcs, Layout, Paint, Compositing"},
                         {text: "Update calcs, Paint, [Compositing]"},
-                    ],
-                    [
-                        {text: "Millions of LoC"},
-                        {text: "~20 kLoC"},
                     ]
                 ]
             },
